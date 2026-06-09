@@ -2,6 +2,7 @@ import React from 'react';
 // Importiere deine neu erstellte Komponente
 import Lightfall from './components/Lightfall.jsx'; 
 import Navbar from './components/Navbar.jsx'; 
+import './App.css';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -11,38 +12,39 @@ import Projekte from './pages/Projekte.jsx';
 import Kontakt from './pages/Kontakt.jsx';
 import Skills from './pages/Skills.jsx';
 import Dokumente from './pages/Dokumente.jsx';  
+import Login from './pages/Login.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 function App() {
   return (
     <Router>
-    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
+    <div className="app-container">
       
       {/* 1. LAYER: Der animierte Hintergrund ganz unten (z-index: -1) */}
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
+      <div className="background-layer">
         <Lightfall /> 
       </div>
       
       {/* 2. LAYER: Dein Navbar ganz oben (z-index: 1) */}
        <Navbar />
 
-<div style={{
-          position: 'relative',
-          zIndex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100%',
-          color: '#e5e5e5',
-          paddingTop: '80px' // Etwas Platz nach oben lassen wegen der fixierten Navbar
-        }}>
+<div className="main-content-wrapper">
           
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projekte />} />
-            <Route path="/documents" element={<Dokumente />} />
             <Route path="/contact" element={<Kontakt />} />
             <Route path="/skills" element={<Skills />} />
+            <Route path="/login" element={<Login />} />
+            <Route 
+              path="/documents" 
+              element={
+                <ProtectedRoute>
+                  <Dokumente />
+                </ProtectedRoute>
+              } 
+            />
           </Routes>
         </div>
      

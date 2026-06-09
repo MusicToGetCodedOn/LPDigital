@@ -55,3 +55,88 @@
 .nav-links a:hover {
   color: #a855f7; /* Dein leuchtendes Violett */
 }
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #d4d4d8;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .glass-navbar {
+    height: auto; /* Höhe passt sich dem Inhalt an */
+    flex-direction: column; /* Logo und Links untereinander stapeln */
+    padding: 15px;
+    gap: 10px;
+    border-radius: 16px; /* Etwas kleinere Rundung auf dem Handy */
+    width: 95%; /* Nutzt den Platz auf kleinen Screens besser aus */
+  }
+
+  .logo-image {
+    height: 35px; /* Logo auf Mobile minimal kleiner */
+  }
+
+  .nav-links {
+    gap: 12px; /* Weniger Abstand zwischen den Links */
+    flex-wrap: wrap; /* Falls es ganz eng wird, brechen die Links sauber um */
+    justify-content: center;
+    display: none; /* Hidden by default on small screens, toggled with .open */
+    width: 100%;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+
+  .nav-links a {
+    font-size: 13px; /* Etwas kleinere Schriftart auf dem Handy */
+  }
+
+  .nav-toggle {
+    display: block;
+    position: absolute;
+    right: 18px;
+    top: 12px;
+  }
+}
+
+.nav-logout-btn {
+  background: none;
+  border: none;
+  color: #d4d4d8;
+  font-family: inherit; /* Übernimmt Poppins */
+  font-size: 140%;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.nav-logout-btn:hover {
+  color: #ff0000; /* Violetter Hover-Effekt */
+}
+
+/* Anpassung im Media Query für Mobilgeräte */
+@media (max-width: 768px) {
+  /* ... deine bestehenden Regeln ... */
+
+  .nav-links a, .nav-logout-btn {
+    font-size: 13px; /* Stellt sicher, dass auch der Button auf dem Handy kleiner wird */
+  }
+}

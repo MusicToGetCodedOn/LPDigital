@@ -14,3 +14,14 @@ html, body, #root {
   
 
 }
+.main-content-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh; /* Mindestens so hoch wie der Bildschirm */
+  padding: 100px 20px 40px 20px; /* Oben mehr Platz wegen der Navbar */
+  overflow-y: auto; /* Erlaubt vertikales Scrollen, wenn der Inhalt lang wird */
+}
