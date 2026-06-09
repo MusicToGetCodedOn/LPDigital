@@ -3,12 +3,12 @@
 .glass-navbar {
   /* Positionierung: Schwebend oben mittig */
   position: fixed;
-  top: 20px;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%); /* Zentriert das Element exakt */
-  width: 90%;
-  max-width: 1000px;
-  height: 65px;
+  width: 100%;
+  max-width: 90%;
+  height: 10vh;
   z-index: 100; /* Stellt sicher, dass die Navbar immer im Vordergrund ist */
 
   /* Flexbox für das Layout (Links und Rechts verteilen) */
@@ -38,7 +38,7 @@
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 20px;
+  gap: 2vh;
   margin: 0;
   padding: 0;
 }
@@ -47,7 +47,7 @@
 .nav-links a {
   text-decoration: none;
   color: #d4d4d8; /* Helles Grau, besser lesbar als reines Weiss */
-  font-size: 15px;
+  font-size: 140%;
   transition: color 0.3s ease;
 }
 

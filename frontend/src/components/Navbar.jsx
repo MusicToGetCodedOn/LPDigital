@@ -1,13 +1,13 @@
 import React from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+import logo from '../img/logo.png';
 
 function Navbar() {
   return (
     <nav className="glass-navbar">
       <div className="nav-logo">
-        {/* Hier könnte später dein Logo oder dein Name stehen */}
-        <span style={{ fontWeight: 'bold', color: '#fff' }}>Mein Portfolio</span>
+        <img src={logo} alt="Logo" className="logo-image" style={{ width: '30%', height: '100%', objectFit: 'contain' }} />
       </div>
       
       <ul className="nav-links">
