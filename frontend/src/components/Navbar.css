@@ -140,3 +140,24 @@
     font-size: 13px; /* Stellt sicher, dass auch der Button auf dem Handy kleiner wird */
   }
 }
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 8px; /* Abstand zwischen </page> und dem LPDigital-Bild */
+}
+
+.dynamic-code-tag {
+  color: #9a9ae9; /* Nutzt dein leuchtendes Violett */
+  font-family: 'Orbitron', sans-serif; /* Ein technischer Code-Look für das Tag */
+  font-size: 1.3rem;
+  font-weight: 600;
+  /* Eine sanfte Transition, falls sich die Textlänge ändert */
+  transition: all 0.3s ease; 
+}
+
+.logo-image {
+  height: 50px; /* Leicht angepasst, damit es perfekt mit dem Text harmoniert */
+  width: auto;
+  object-fit: contain;
+}  

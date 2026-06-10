@@ -55,6 +55,21 @@
 .stack-card:nth-child(5) { z-index: 5; }
 
 
+.counter-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px; /* Schmaler, definierter Abstand zwischen Zahl und % */
+}
+
+.count-up-text {
+  display: inline-block;
+  font-variant-numeric: tabular-nums; /* Verhindert, dass die Zahl beim Raufzählen wackelt */
+}
+
+.percent-sign {
+  color: #e5e5e5;
+}
 
 
 
