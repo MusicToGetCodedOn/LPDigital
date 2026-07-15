@@ -37,8 +37,7 @@ function Documents() {
         
         {/* KATEGORIE 1: BEWERBUNG & LEBENSLAUF */}
         <div className="documents-card glass-box">
-          <div className="card-header-icon">DOC</div>
-          <h3>Personal</h3>
+          <h3>Persönliche Dokumente</h3>
           <p className="card-desc">Aktuelle Lebensläufe und Bewerbungsdokumente für deine Einsicht.</p>
           
           <ul className="doc-list">
@@ -61,7 +60,6 @@ function Documents() {
 
         {/* KATEGORIE 2: SCHULZEUGNISSE */}
         <div className="documents-card glass-box">
-          <div className="card-header-icon">GRAD</div>
           <h3>Schule & Noten</h3>
           <p className="card-desc">Offizielle Zeugnisse und Leistungsnachweise meiner Ausbildungsstätten.</p>
           
@@ -99,7 +97,6 @@ function Documents() {
 
         {/* KATEGORIE 3: ÜK & PRAXISTRAINING */}
         <div className="documents-card glass-box">
-          <div className="card-header-icon">GEAR</div>
           <h3>Kurse & Praxistraining</h3>
           <p className="card-desc">Bestätigungen überbetrieblicher Kurse (ÜK) und praktische Module.</p>
           
