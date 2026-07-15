@@ -47,8 +47,8 @@ function Navbar() {
         <Link to="/" onClick={() => setOpen(false)} className="logo-link">
           {/* Das Tag wird nun IMMER gerendert */}
           <span className="dynamic-code-tag">{`</${currentTag}>`}</span>
-
-<span className="dynamic-code-tag">{`LPDigital`}</span>        </Link>
+          <span className="dynamic-code-tag">{`LPDigital`}</span>{" "}
+        </Link>
       </div>
 
       <button
