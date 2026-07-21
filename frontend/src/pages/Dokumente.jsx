@@ -1,15 +1,18 @@
 // src/pages/Documents.jsx
 import React, { useState } from "react";
-import { createPortal } from "react-dom"; // Import für das Portal
+import { createPortal } from "react-dom";
 import "./Documents.css";
+
+// Backend Basis-URL
+const API_BASE_URL = "http://localhost:5000";
 
 function Documents() {
   const [previewUrl, setPreviewUrl] = useState(null);
 
-  // Download-Funktion
+  // Download-Funktion via Backend
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
-    link.href = `/docs/${fileName}`;
+    link.href = `${API_BASE_URL}/documents/${fileName}`;
     link.download = fileName;
     document.body.appendChild(link);
     link.click();
@@ -18,7 +21,7 @@ function Documents() {
 
   // Öffnet den PDF-Viewer im Modal
   const handlePreview = (fileName) => {
-    setPreviewUrl(`/docs/${fileName}`);
+    setPreviewUrl(`${API_BASE_URL}/documents/${fileName}`);
   };
 
   // Schliesst das Modal
@@ -70,10 +73,10 @@ function Documents() {
                 <span className="doc-meta">PDF • Semesterzeugnis bwd Bern</span>
               </div>
               <div className="button-group-split">
-                <button className="preview-btn" onClick={() => handlePreview("Zeugnis bwd IM24A Perez Loris Zeugnis Berufsmaturität.pdf")}>
+                <button className="preview-btn" onClick={() => handlePreview("Zeugnis_bwd_IM24A_Perez_Loris_Zeugnis_Berufsmaturität.pdf")}>
                   Vorschau
                 </button>
-                <button className="download-btn-small primary-gradient" onClick={() => handleDownload("Zeugnis bwd IM24A Perez Loris Zeugnis Berufsmaturität.pdf")}>
+                <button className="download-btn-small primary-gradient" onClick={() => handleDownload("Zeugnis_bwd_IM24A_Perez_Loris_Zeugnis_Berufsmaturität.pdf")}>
                   Download
                 </button>
               </div>
@@ -84,10 +87,10 @@ function Documents() {
                 <span className="doc-meta">PDF • Modulnoten Berufsschule</span>
               </div>
               <div className="button-group-split">
-                <button className="preview-btn" onClick={() => handlePreview("Zeugnis gibb IM24A Perez Loris Zeugnis Informatik.pdf")}>
+                <button className="preview-btn" onClick={() => handlePreview("Zeugnis_gibb_IM24A_Perez_Loris_Zeugnis_Informatik.pdf")}>
                   Vorschau
                 </button>
-                <button className="download-btn-small primary-gradient" onClick={() => handleDownload("Zeugnis gibb IM24A Perez Loris Zeugnis Informatik.pdf")}>
+                <button className="download-btn-small primary-gradient" onClick={() => handleDownload("Zeugnis_gibb_IM24A_Perez_Loris_Zeugnis_Informatik.pdf")}>
                   Download
                 </button>
               </div>
@@ -180,7 +183,7 @@ function Documents() {
           <div className="preview-modal-container" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <span className="modal-title">Dokumenten-Vorschau</span>
-              <button className="modal-close-btn" onClick={closePreview}>X</button>
+              <button className="modal-close-btn" onClick={closePreview}>✕</button>
             </div>
             <div className="modal-body">
               <iframe 
@@ -193,7 +196,7 @@ function Documents() {
             </div>
           </div>
         </div>,
-        document.body // Hängt das HTML direkt an den body an
+        document.body
       )}
     </div>
   );

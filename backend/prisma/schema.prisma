@@ -28,3 +28,12 @@ model Project {
   liveUrl     String?  // Optionaler Link zur Live-Demo
   createdAt   DateTime @default(now())
 }
+
+model Document {
+  id          String   @id
+  title       String
+  category    String   // 'lebenslauf', 'zeugnisse', 'zertifikate'
+  fileUrl     String   // Relativer Pfad z.B. "/documents/lebenslauf.pdf"
+  fileSize    String   // z.B. "1.2 MB"
+  updatedAt   DateTime @default(now())
+}
