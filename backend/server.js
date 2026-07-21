@@ -21,6 +21,7 @@ app.use(express.json());
 
 // API Routes
 app.use('/api', apiRoutes);
+app.use('/projects', express.static('public/projects'));
 
 // Health-Check Endpunkt (sehr nützlich für Server-Monitoring & Self-Hosting)
 app.get('/health', (req, res) => {
