@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const { prisma } = require('../config/db');
 
 const login = async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
-    // Validierung der Eingaben
     if (!username || !password) {
       return res.status(400).json({ 
         success: false, 
@@ -12,23 +13,31 @@ const login = async (req, res, next) => {
       });
     }
 
-    // TODO: Später hier Datenbank-Abfrage einbauen:
-    // const user = await User.findOne({ username });
-    
-    // Aktueller temporärer Abgleich via Umgebungsvariablen
-    const validUsername = process.env.PORTFOLIO_USERNAME;
-    const validPassword = process.env.PORTFOLIO_PASSWORD;
+    // 1. Benutzer in der Datenbank suchen
+    const user = await prisma.user.findUnique({
+      where: { username }
+    });
 
-    if (username !== validUsername || password !== validPassword) {
+    if (!user) {
       return res.status(401).json({ 
         success: false, 
         message: 'Ungültige Anmeldedaten.' 
       });
     }
 
-    // JWT erstellen
+    // 2. Passwort mit dem gehashten Wert aus der DB vergleichen
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ 
+        success: false, 
+        message: 'Ungültige Anmeldedaten.' 
+      });
+    }
+
+    // 3. JWT-Token generieren
     const token = jwt.sign(
-      { username: validUsername, role: 'admin' },
+      { userId: user.id, username: user.username, role: 'admin' },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN || '2h' }
     );
@@ -39,7 +48,7 @@ const login = async (req, res, next) => {
       token,
     });
   } catch (error) {
-    next(error); // Reicht Fehler an die errorHandler Middleware weiter
+    next(error);
   }
 };
 
