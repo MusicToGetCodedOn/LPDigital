@@ -13,3 +13,18 @@ model User {
   password  String
   createdAt DateTime @default(now())
 }
+
+model Project {
+  id          String   @id
+  title       String
+  category    String   // 'privat' oder 'gibb'
+  tags        String   // Komma-getrennt (z.B. "React,Node.js,API")
+  shortDesc   String
+  problem     String   // Abstract: Ausgangslage
+  solution    String   // Abstract: Umsetzung
+  result      String   // Abstract: Ergebnis
+  imageUrl    String?  // Optionaler Pfad zum Bild (z.B. "/projects/soundscope.png")
+  githubUrl   String?  // Optionaler Link zum GitHub Repo
+  liveUrl     String?  // Optionaler Link zur Live-Demo
+  createdAt   DateTime @default(now())
+}
