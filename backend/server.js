@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require("cors");
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 require("dotenv").config();
 
 const { connectDB } = require("./config/db");
@@ -40,6 +42,24 @@ app.use(express.json());
 // API Routes
 app.use("/api", apiRoutes);
 app.use("/projects", express.static("public/projects"));
+app.get('/api/projects/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const project = await prisma.project.findUnique({
+      where: { id: id },
+    });
+    
+    if (!project) {
+      return res.status(404).json({ error: "Projekt nicht gefunden" });
+    }
+    
+    res.json(project);
+  } catch (error) {
+    console.error("Fehler beim Laden des Projekts:", error);
+    res.status(500).json({ error: "Fehler beim Laden des Projekts" });
+  }
+});
 app.use("/documents", express.static("public/documents"));
 
 // Health-Check Endpunkt (sehr nützlich für Server-Monitoring & Self-Hosting)

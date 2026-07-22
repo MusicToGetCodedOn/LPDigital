@@ -14,6 +14,8 @@ import Skills from './pages/Skills.jsx';
 import Dokumente from './pages/Dokumente.jsx';  
 import Login from './pages/Login.jsx';
 import ProtectedRoute from './components/Protectedroute.jsx';
+import ProjectDetail from './pages/ProjectDetail.jsx'; 
+
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projekte />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/contact" element={<Kontakt />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/login" element={<Login />} />

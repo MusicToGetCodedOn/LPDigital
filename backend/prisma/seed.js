@@ -61,7 +61,7 @@ async function main() {
       category: "Gibb",
       tags: "React,Node.js,JavaScript,API,Fullstack",
       shortDesc:
-        "Game-Tracking-Plattform nach dem Vorbild von IGDB mit Bewertungen und Spielelisten. Dieses Projekt ist aus der Abschlussarbeit des Moduls 203",
+        "Game-Tracking-Plattform nach dem Vorbild von IGDB mit Bewertungen und Spielelisten. Dieses Projekt ist aus der Abschlussarbeit des Moduls 293",
       problem:
         "Verwaltung von eigenen Spielelisten und Entdecken neuer Spiele in einer zentralen Hub.",
       solution:
@@ -111,13 +111,13 @@ async function main() {
       category: "Gibb",
       tags: "React,JavaScript,Frontend",
       shortDesc:
-        "Interaktiver PC-Konfigurator basierend auf Hardware-Datensätzen.",
+        "PCMatch ist eine moderne, interaktive Webanwendung auf Basis von React und Vite, die Nutzer dabei unterstützt, PC-Hardwarekomponenten auszuwählen, zu vergleichen und miteinander zu konfigurieren.",
       problem:
-        "Die Zusammenstellung von benutzerdefinierten PC-Komponenten erfordert Transparenz über Kompatibilität und Preis-Leistung.",
+        "Die Zusammenstellung eines eigenen PCs oder das Upgrade bestehender Hardware ist oft komplex, unübersichtlich und fehleranfällig. Einsteiger sowie fortgeschrittene Nutzer stehen vor der Herausforderung, aus einer Vielzahl von Komponenten die richtigen Teile auszuwählen und deren Kompatibilität (z. B. Vermeidung von Bottlenecks) sicherzustellen.",
       solution:
-        "Reines React-Frontend, das vorgefilterte Datensätze von PC-Komponenten durchsucht und Zusammenstellungen berechnet.",
+        "PCMatch bietet eine intuitive Benutzeroberfläche zur Exploration von Hardware-Spezifikationen kombiniert mit einem intelligenten Konfigurationsassistenten. Unter Einsatz moderner Webtechnologien wie React, TypeScript, Framer Motion und React Router entsteht eine performante, dynamische Plattform, die den Zusammenstellungsprozess vereinfacht und zugänglich macht.",
       result:
-        "Eine dynamische Webanwendung zur Zusammenstellung individueller Gaming- und Arbeits-PCs.",
+        "Eine funktionale, reaktive Single-Page-Application mit flüssigen Animationen, klaren Navigationsstrukturen und einem optimierten Development- bzw. Build-Prozess durch Vite und ESLint, die Benutzern eine mühelose Hardware-Konfiguration ermöglicht.",
       imageUrl: "/projects/pcmatch.png",
       githubUrl: "https://github.com/MusicToGetCodedOn/PCMatch",
       liveUrl: null,
