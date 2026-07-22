@@ -494,6 +494,39 @@
 .reset-all-filters-btn:hover {
   transform: scale(1.03);
 }
+.tag-filter-pill {
+  border-width: 1px;
+  border-style: solid;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+}
+
+.tag-filter-pill:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.2);
+}
+
+.tag-pill {
+  border-width: 1px;
+  border-style: solid;
+  font-size: 0.73rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.tag-pill:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.25);
+}
 
 /* Mobile Optimierungen */
 @media (max-width: 768px) {

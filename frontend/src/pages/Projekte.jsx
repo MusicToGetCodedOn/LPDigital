@@ -5,14 +5,61 @@ import "./Projekte.css";
 
 const API_BASE_URL = "http://localhost:5000";
 
+// Farbschema für spezifische Tech-Stack Tags (wird NUR angewendet, wenn aktiv/ausgewählt!)
+const TAG_COLORS = {
+  mongodb: { bg: "rgba(16, 185, 129, 0.25)", border: "#10b981", text: "#6ee7b7" }, // Grün
+  react: { bg: "rgba(14, 165, 233, 0.25)", border: "#0ea5e9", text: "#7dd3fc" }, // Hellblau
+  "react native": { bg: "rgba(14, 165, 233, 0.25)", border: "#0ea5e9", text: "#7dd3fc" },
+  docker: { bg: "rgba(2, 132, 199, 0.25)", border: "#0284c7", text: "#38bdf8" }, // Docker Blau
+  "docker-compose": { bg: "rgba(2, 132, 199, 0.25)", border: "#0284c7", text: "#38bdf8" },
+  opentofu: { bg: "rgba(249, 115, 22, 0.25)", border: "#f97316", text: "#ffedd5" }, // Orange
+  terraform: { bg: "rgba(168, 85, 247, 0.25)", border: "#a855f7", text: "#e9d5ff" }, // Violett
+  javascript: { bg: "rgba(234, 179, 8, 0.25)", border: "#eab308", text: "#fef08a" }, // Gelb
+  typescript: { bg: "rgba(59, 130, 246, 0.25)", border: "#3b82f6", text: "#93c5fd" }, // Blau
+  "node.js": { bg: "rgba(34, 197, 94, 0.25)", border: "#22c55e", text: "#86efac" }, // Node Grün
+  python: { bg: "rgba(234, 179, 8, 0.25)", border: "#3b82f6", text: "#fde047" }, // Gelb/Blau
+  csharp: { bg: "rgba(168, 85, 247, 0.25)", border: "#9333ea", text: "#f3e8ff" }, // Lila
+  ".net maui": { bg: "rgba(147, 51, 234, 0.25)", border: "#a855f7", text: "#f3e8ff" },
+  java: { bg: "rgba(239, 68, 68, 0.25)", border: "#ef4444", text: "#fca5a5" }, // Rot
+  api: { bg: "rgba(20, 184, 166, 0.25)", border: "#14b8a6", text: "#99f6e4" }, // Türkis
+  ai: { bg: "rgba(236, 72, 153, 0.25)", border: "#ec4899", text: "#fbcfe8" }, // Pink
+};
+
+// Hilfsfunktion: Gibt die Farbe NUR zurück, wenn der Tag tatsächlich ausgewählt (isSelected) ist
+const getTagStyle = (tag, isSelected = false) => {
+  if (!isSelected) {
+    // Inaktiv: Standardmässiger, unaufdringlicher Look
+    return {
+      background: "rgba(255, 255, 255, 0.04)",
+      borderColor: "rgba(255, 255, 255, 0.12)",
+      color: "#d4d4d8",
+      boxShadow: "none"
+    };
+  }
+
+  // Aktiv: Individuelle Tech-Farbe
+  const normalized = tag.toLowerCase().trim();
+  const config = TAG_COLORS[normalized] || {
+    bg: "rgba(168, 85, 247, 0.25)",
+    border: "#a855f7",
+    text: "#e9d5ff",
+  };
+
+  return {
+    background: config.bg,
+    borderColor: config.border,
+    color: config.text,
+    boxShadow: `0 0 14px ${config.bg}`,
+  };
+};
+
 function Projects() {
   const [projects, setProjects] = useState([]);
-  const [categoryFilter, setCategoryFilter] = useState("alle"); // 'alle', 'privat', 'gibb', 'ük'
-  const [selectedTag, setSelectedTag] = useState(null); // z.B. 'React', 'Docker'
+  const [categoryFilter, setCategoryFilter] = useState("alle");
+  const [selectedTags, setSelectedTags] = useState([]); // Array für Multi-Select
   const [selectedProject, setSelectedProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Backend-Daten laden
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/projects`)
       .then((res) => res.json())
@@ -26,26 +73,36 @@ function Projects() {
       });
   }, []);
 
-  // Alle eindeutigen Tags dynamisch aus den geladenen Projekten extrahieren
+  // Alle eindeutigen Tags dynamisch extrahieren
   const allTags = Array.from(
     new Set(
       projects.flatMap((p) => (p.tags ? p.tags.map((t) => t.trim()) : []))
     )
   ).sort();
 
-  // Kombinierte Filter-Logik (Kategorie + Tag)
+  // Multi-Select Tag-Toggle Handler
+  const toggleTag = (tag) => {
+    setSelectedTags((prevTags) =>
+      prevTags.includes(tag)
+        ? prevTags.filter((t) => t !== tag)
+        : [...prevTags, tag]
+    );
+  };
+
+  // Kombinierte Filter-Logik (Kategorie + Multi-Tag)
   const filteredProjects = projects.filter((p) => {
-    // 1. Kategorie-Check
     const matchesCategory =
       categoryFilter === "alle" ||
       p.category.toLowerCase() === categoryFilter.toLowerCase();
 
-    // 2. Tag-Check
-    const matchesTag =
-      !selectedTag ||
-      (p.tags && p.tags.map((t) => t.trim()).includes(selectedTag));
+    const projectTags = p.tags ? p.tags.map((t) => t.trim()) : [];
+    
+    // Prüft, ob ALLE ausgewählten Tags im Projekt enthalten sind
+    const matchesTags =
+      selectedTags.length === 0 ||
+      selectedTags.every((selectedTag) => projectTags.includes(selectedTag));
 
-    return matchesCategory && matchesTag;
+    return matchesCategory && matchesTags;
   });
 
   return (
@@ -57,52 +114,47 @@ function Projects() {
 
       {/* KATEGORIE FILTER BUTTONS */}
       <div className="projects-filter-bar">
-        <button
-          className={`filter-btn ${categoryFilter === "alle" ? "active" : ""}`}
-          onClick={() => setCategoryFilter("alle")}
-        >
-          Alle
-        </button>
-        <button
-          className={`filter-btn ${categoryFilter === "privat" ? "active" : ""}`}
-          onClick={() => setCategoryFilter("privat")}
-        >
-          Private Projekte
-        </button>
-        <button
-          className={`filter-btn ${categoryFilter === "gibb" ? "active" : ""}`}
-          onClick={() => setCategoryFilter("gibb")}
-        >
-          GIBB Module
-        </button>
-        <button
-          className={`filter-btn ${categoryFilter === "ük" ? "active" : ""}`}
-          onClick={() => setCategoryFilter("ük")}
-        >
-          ÜK Kurse
-        </button>
+        {["alle", "privat", "gibb", "ük"].map((cat) => (
+          <button
+            key={cat}
+            className={`filter-btn ${categoryFilter === cat ? "active" : ""}`}
+            onClick={() => setCategoryFilter(cat)}
+          >
+            {cat === "alle"
+              ? "Alle"
+              : cat === "privat"
+              ? "Private Projekte"
+              : cat === "gibb"
+              ? "GIBB Module"
+              : "ÜK Kurse"}
+          </button>
+        ))}
       </div>
 
-      {/* TAG FILTER SCHLEIFE (TECHNOLOGIE-SCHALTER) */}
+      {/* TAG FILTER SCHLEIFE (MULTI-SELECT SCHALTER) */}
       {!loading && allTags.length > 0 && (
         <div className="tag-filter-container">
-          <span className="tag-filter-label">Nach Tech-Stack filtern:</span>
+          <span className="tag-filter-label">
+            Nach Tech-Stack filtern {selectedTags.length > 0 && `(${selectedTags.length} aktiv)`}:
+          </span>
           <div className="tag-filter-pills">
-            {allTags.map((tag, idx) => (
-              <button
-                key={idx}
-                className={`tag-filter-pill ${selectedTag === tag ? "active" : ""}`}
-                onClick={() =>
-                  setSelectedTag(selectedTag === tag ? null : tag)
-                }
-              >
-                {tag}
-              </button>
-            ))}
-            {selectedTag && (
+            {allTags.map((tag, idx) => {
+              const isSelected = selectedTags.includes(tag);
+              return (
+                <button
+                  key={idx}
+                  style={getTagStyle(tag, isSelected)}
+                  className={`tag-filter-pill ${isSelected ? "active" : ""}`}
+                  onClick={() => toggleTag(tag)}
+                >
+                  {tag}
+                </button>
+              );
+            })}
+            {selectedTags.length > 0 && (
               <button
                 className="clear-tag-btn"
-                onClick={() => setSelectedTag(null)}
+                onClick={() => setSelectedTags([])}
               >
                 ✕ Filter zurücksetzen
               </button>
@@ -124,7 +176,7 @@ function Projects() {
                 className="reset-all-filters-btn"
                 onClick={() => {
                   setCategoryFilter("alle");
-                  setSelectedTag(null);
+                  setSelectedTags([]);
                 }}
               >
                 Alle Filter zurücksetzen
@@ -137,7 +189,6 @@ function Projects() {
                 className="project-card"
                 onClick={() => setSelectedProject(project)}
               >
-                {/* BILD ALS HINTERGRUND MIT OVERLAY */}
                 <div
                   className="project-card-bg"
                   style={{
@@ -148,7 +199,6 @@ function Projects() {
                 />
                 <div className="project-card-overlay" />
 
-                {/* CARD INHALT */}
                 <div className="project-card-content">
                   <div className="card-top-row">
                     <span
@@ -161,20 +211,20 @@ function Projects() {
                   <h3 className="project-title">{project.title}</h3>
                   <p className="project-short-desc">{project.shortDesc}</p>
 
-                  {/* TAGS (Beim Klick auf ein Tag auf der Karte kann man direkt filtern!) */}
+                  {/* TAGS AUF DER KARTE (Färben sich beim Anklicken/Auswählen) */}
                   <div className="project-tags">
                     {project.tags &&
                       project.tags.map((tag, idx) => {
                         const trimmedTag = tag.trim();
+                        const isSelected = selectedTags.includes(trimmedTag);
                         return (
                           <span
                             key={idx}
-                            className={`tag-pill ${selectedTag === trimmedTag ? "highlighted" : ""}`}
+                            style={getTagStyle(trimmedTag, isSelected)}
+                            className={`tag-pill ${isSelected ? "highlighted" : ""}`}
                             onClick={(e) => {
-                              e.stopPropagation(); // Verhindert das Öffnen des Modals
-                              setSelectedTag(
-                                selectedTag === trimmedTag ? null : trimmedTag
-                              );
+                              e.stopPropagation(); // Verhindert das Öffnen des Detail-Modals
+                              toggleTag(trimmedTag);
                             }}
                           >
                             {trimmedTag}
@@ -202,7 +252,6 @@ function Projects() {
               className="preview-modal-container project-detail-modal"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* MODAL HEADER */}
               <div className="modal-header">
                 <span className="modal-title">{selectedProject.title}</span>
                 <button
@@ -213,9 +262,7 @@ function Projects() {
                 </button>
               </div>
 
-              {/* MODAL BODY */}
               <div className="modal-body project-detail-body">
-                {/* HERO BILD IN DER DETAILANSICHT */}
                 {selectedProject.imageUrl && (
                   <div className="detail-hero-image-wrapper">
                     <img
@@ -226,7 +273,6 @@ function Projects() {
                   </div>
                 )}
 
-                {/* KATEGORIE & TAGS */}
                 <div className="detail-meta-row">
                   <span
                     className={`category-badge badge-${selectedProject.category.toLowerCase()}`}
@@ -235,15 +281,22 @@ function Projects() {
                   </span>
                   <div className="project-tags">
                     {selectedProject.tags &&
-                      selectedProject.tags.map((tag, idx) => (
-                        <span key={idx} className="tag-pill">
-                          {tag.trim()}
-                        </span>
-                      ))}
+                      selectedProject.tags.map((tag, idx) => {
+                        const trimmedTag = tag.trim();
+                        const isSelected = selectedTags.includes(trimmedTag);
+                        return (
+                          <span
+                            key={idx}
+                            style={getTagStyle(trimmedTag, isSelected)}
+                            className="tag-pill"
+                          >
+                            {trimmedTag}
+                          </span>
+                        );
+                      })}
                   </div>
                 </div>
 
-                {/* ABSTRACT SEKTIONEN */}
                 <div className="abstract-container">
                   <div className="abstract-section">
                     <h4>Ausgangslage & Problemstellung</h4>
@@ -261,7 +314,6 @@ function Projects() {
                   </div>
                 </div>
 
-                {/* LINKS (GITHUB & LIVE) */}
                 <div className="detail-links-row">
                   {selectedProject.links?.github && (
                     <a

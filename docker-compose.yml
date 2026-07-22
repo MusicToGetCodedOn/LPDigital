@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: lpsite-backend
+    restart: always
+    ports:
+      - "5000:5000"
+    # Liest die Variablen direkt aus der .env-Datei im Hauptverzeichnis
+    env_file:
+      - backend/.env
+    volumes:
+      - db-data:/usr/src/app/prisma/data
+      - ./backend/public/documents:/usr/src/app/public/documents
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: lpsite-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  db-data:

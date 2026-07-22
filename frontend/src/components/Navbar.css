@@ -5,36 +5,40 @@
   position: fixed;
   top: 5%;
   left: 50%;
-  transform: translateX(-50%); /* Zentriert das Element exakt */
+  transform: translateX(-50%);
   width: 100%;
   max-width: 90%;
   height: 10vh;
-  z-index: 100; /* Stellt sicher, dass die Navbar immer im Vordergrund ist */
+  z-index: 1000; /* Erhöht, damit nichts die Navigation überlagert */
 
-  /* Flexbox für das Layout (Links und Rechts verteilen) */
+  /* Stacking Context erzwingen, damit backdrop-filter im Production-Build sicher rendert */
+  isolation: isolate;
+
+  /* Flexbox für das Layout */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
 
-  /* Der Glassmorphism-Effekt */
-  /* Ein leichter Verlauf von sehr dunklem Violett zu etwas hellerem Violett in der Mitte */
+  /* Glassmorphism-Effekt */
   background: linear-gradient(
     90deg, 
-    rgba(15, 10, 30, 0.6) 0%, 
-    rgba(100, 30, 180, 0.3) 50%, 
-    rgba(15, 10, 30, 0.6) 100%
-  );
-  backdrop-filter: blur(12px); /* Macht den Matrix-Hintergrund unscharf */
-  -webkit-backdrop-filter: blur(12px); /* Für Safari-Browser */
+    rgba(15, 10, 30, 0.75) 0%, 
+    rgba(45, 15, 75, 0.65) 50%, 
+    rgba(15, 10, 30, 0.75) 100%
+  ) !important;
   
-  /* Optische Details aus deinem Screenshot */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Hauchdünner, heller Rand */
-  border-radius: 24px; /* Stark abgerundete Ecken wie eine Pille */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Leichter Schatten nach unten */
+  /* Weichzeichner für den Hintergrund */
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  
+  /* Optische Details */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* Styling für die Liste (Punkte entfernen und nebeneinander setzen) */
+/* Styling für die Liste */
 .nav-links {
   display: flex;
   list-style: none;
@@ -46,18 +50,34 @@
 /* Styling für die Links */
 .nav-links a {
   text-decoration: none;
-  color: #d4d4d8; /* Helles Grau, besser lesbar als reines Weiss */
+  color: #d4d4d8;
   font-size: 140%;
   transition: color 0.3s ease;
 }
 
-/* Hover-Effekt: Wenn man mit der Maus drüber fährt */
+/* Hover-Effekt */
 .nav-links a:hover {
-  color: #a855f7; /* Dein leuchtendes Violett */
+  color: #a855f7;
 }
+
 .nav-logo {
   display: flex;
   align-items: center;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 10px;
+}
+
+.dynamic-code-tag {
+  color: #9a9ae9;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  transition: all 0.3s ease; 
 }
 
 .logo-image {
@@ -75,26 +95,41 @@
   cursor: pointer;
 }
 
+.nav-logout-btn {
+  background: none;
+  border: none;
+  color: #d4d4d8;
+  font-family: inherit;
+  font-size: 140%;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s ease;
+}
 
+.nav-logout-btn:hover {
+  color: #ff0000;
+}
+
+/* Mobile responsive Layout */
 @media (max-width: 768px) {
   .glass-navbar {
-    height: auto; /* Höhe passt sich dem Inhalt an */
-    flex-direction: column; /* Logo und Links untereinander stapeln */
+    height: auto;
+    flex-direction: column;
     padding: 15px;
     gap: 10px;
-    border-radius: 16px; /* Etwas kleinere Rundung auf dem Handy */
-    width: 95%; /* Nutzt den Platz auf kleinen Screens besser aus */
+    border-radius: 16px;
+    width: 95%;
   }
 
   .logo-image {
-    height: 35px; /* Logo auf Mobile minimal kleiner */
+    height: 35px;
   }
 
   .nav-links {
-    gap: 12px; /* Weniger Abstand zwischen den Links */
-    flex-wrap: wrap; /* Falls es ganz eng wird, brechen die Links sauber um */
+    gap: 12px;
+    flex-wrap: wrap;
     justify-content: center;
-    display: none; /* Hidden by default on small screens, toggled with .open */
+    display: none;
     width: 100%;
   }
 
@@ -102,11 +137,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
   }
 
-  .nav-links a {
-    font-size: 13px; /* Etwas kleinere Schriftart auf dem Handy */
+  .nav-links a, 
+  .nav-logout-btn {
+    font-size: 13px;
   }
 
   .nav-toggle {
@@ -116,48 +151,3 @@
     top: 12px;
   }
 }
-
-.nav-logout-btn {
-  background: none;
-  border: none;
-  color: #d4d4d8;
-  font-family: inherit; /* Übernimmt Poppins */
-  font-size: 140%;
-  cursor: pointer;
-  padding: 0;
-  transition: color 0.3s ease;
-}
-
-.nav-logout-btn:hover {
-  color: #ff0000; /* Violetter Hover-Effekt */
-}
-
-/* Anpassung im Media Query für Mobilgeräte */
-@media (max-width: 768px) {
-  /* ... deine bestehenden Regeln ... */
-
-  .nav-links a, .nav-logout-btn {
-    font-size: 13px; /* Stellt sicher, dass auch der Button auf dem Handy kleiner wird */
-  }
-}
-.logo-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  gap: 1%; /* Abstand zwischen </page> und dem LPDigital-Bild */
-}
-
-.dynamic-code-tag {
-  color: #9a9ae9; /* Nutzt dein leuchtendes Violett */
-  font-family: 'Orbitron', sans-serif; /* Ein technischer Code-Look für das Tag */
-  font-size: 1.3rem;
-  font-weight: 600;
-  /* Eine sanfte Transition, falls sich die Textlänge ändert */
-  transition: all 0.3s ease; 
-}
-
-.logo-image {
-  height: 50px; /* Leicht angepasst, damit es perfekt mit dem Text harmoniert */
-  width: auto;
-  object-fit: contain;
-}  

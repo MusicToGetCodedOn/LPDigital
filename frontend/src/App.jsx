@@ -13,7 +13,7 @@ import Kontakt from './pages/Kontakt.jsx';
 import Skills from './pages/Skills.jsx';
 import Dokumente from './pages/Dokumente.jsx';  
 import Login from './pages/Login.jsx';
-import ProtectedRoute from './components/ProtectedRoute.jsx';
+import ProtectedRoute from './components/Protectedroute.jsx';
 
 function App() {
   return (
