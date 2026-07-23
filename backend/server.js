@@ -10,6 +10,7 @@ const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const path = require('path');
 
 // Datenbankverbindung initialisieren
 connectDB();
@@ -61,6 +62,19 @@ app.get('/api/projects/:id', async (req, res) => {
   }
 });
 app.use("/documents", express.static("public/documents"));
+
+app.get('/api/languages', async (req, res) => {
+  try {
+    const languages = await prisma.language.findMany({
+      orderBy: { order: 'asc' }
+    });
+    res.json(languages);
+  } catch (error) {
+    console.error("Fehler beim Laden der Sprachen:", error);
+    res.status(500).json({ error: "Fehler beim Laden der Sprachen" });
+  }
+});
+app.use('/flags', express.static(path.join(__dirname, 'public/flags')));
 
 // Health-Check Endpunkt (sehr nützlich für Server-Monitoring & Self-Hosting)
 app.get("/health", (req, res) => {

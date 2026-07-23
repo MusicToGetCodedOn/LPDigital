@@ -18,5 +18,5 @@ COPY . .
 # Port freigeben
 EXPOSE 5000
 
-# Start-Befehl (führt Migrationen aus und startet den Server)
-CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
+# Start-Befehl: Erstellt/synchronisiert Tabellen, führt Seed aus und startet Server
+CMD ["sh", "-c", "npx prisma db push && node prisma/seed.js && node server.js"]

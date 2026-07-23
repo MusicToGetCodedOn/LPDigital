@@ -28,6 +28,13 @@ model Project {
   liveUrl     String?  // Optionaler Link zur Live-Demo
   createdAt   DateTime @default(now())
 }
+model Language {
+  id       String @id @default(uuid())
+  name     String // z.B. "Deutsch"
+  level    String // z.B. "Muttersprache" oder "C1"
+  flagUrl  String // z.B. "/flags/deutsch.png"
+  order    Int    @default(0) // Für die Reihung in der Liste
+}
 
 model Document {
   id          String   @id

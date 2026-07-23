@@ -7,7 +7,7 @@ async function main() {
   // 1. Admin User Seeding
   const username = process.env.PORTFOLIO_USERNAME || "admin";
   const rawPassword =
-    process.env.PORTFOLIO_PASSWORD || "meinSicheresPasswort123";
+    process.env.PORTFOLIO_PASSWORD || "bwd2026";
   const hashedPassword = await bcrypt.hash(rawPassword, 10);
 
   await prisma.user.upsert({
@@ -278,6 +278,37 @@ async function main() {
       update: doc,
       create: doc,
     });
+  }
+
+  await prisma.language.deleteMany();
+
+  const languages = [
+    {
+      name: "Deutsch",
+      level: "Muttersprache",
+      flagUrl: "/flags/deutsch.jpg",
+      order: 1,
+    },
+    { name: "Englisch",
+      level: "C1", 
+      flagUrl: "/flags/englisch.jpg", 
+      order: 2 },
+    {
+      name: "Französisch",
+      level: "Gutes Verständnis",
+      flagUrl: "/flags/franzoesisch.jpg",
+      order: 3,
+    },
+    {
+      name: "Italienisch",
+      level: "Gutes Verständnis",
+      flagUrl: "/flags/italienisch.jpg",
+      order: 4,
+    },
+  ];
+
+  for (const lang of languages) {
+    await prisma.language.create({ data: lang });
   }
 
   console.log("Seeding mit Links und aufgeräumten Tags erfolgreich!");
