@@ -9,7 +9,7 @@ const authenticateToken = (req, res, next) => {
     return res.status(401).json({ success: false, message: 'Zugriff verweigert. Kein Token angegeben.' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET || 'dev_fallback_secret_key', (err, user) => { 
     if (err) {
       return res.status(403).json({ success: false, message: 'Token ungültig oder abgelaufen.' });
     }

@@ -1,21 +1,24 @@
 const express = require("express");
 const cors = require("cors");
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const path = require("path");
 require("dotenv").config();
 
+// Config & Middleware
 const { connectDB } = require("./config/db");
-const apiRoutes = require("./routes");
 const errorHandler = require("./middleware/errorHandler");
+
+// Routes
+const apiRoutes = require("./routes"); // Bindet routes/index.js ein
+const documentRoutes = require("./routes/documentRoutes"); // Geändert von import zu require
+const languageRoutes = require("./routes/languageRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const path = require('path');
 
 // Datenbankverbindung initialisieren
 connectDB();
 
-// Global Middlewares
+// --- Global Middlewares ---
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
@@ -26,9 +29,7 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Erlaube Anfragen ohne Origin (z. B. Postman, Server-to-Server)
       if (!origin) return callback(null, true);
-
       if (allowedOrigins.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
@@ -36,45 +37,18 @@ app.use(
       }
     },
     credentials: true,
-  }),
+  })
 );
 app.use(express.json());
 
-// API Routes
-app.use("/api", apiRoutes);
-app.use("/projects", express.static("public/projects"));
-app.get('/api/projects/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    
-    const project = await prisma.project.findUnique({
-      where: { id: id },
-    });
-    
-    if (!project) {
-      return res.status(404).json({ error: "Projekt nicht gefunden" });
-    }
-    
-    res.json(project);
-  } catch (error) {
-    console.error("Fehler beim Laden des Projekts:", error);
-    res.status(500).json({ error: "Fehler beim Laden des Projekts" });
-  }
-});
-app.use("/documents", express.static("public/documents"));
+// --- Statische Dateien (Bilder, Flaggen etc.) ---
+app.use("/projects", express.static(path.join(__dirname, "public/projects")));
+app.use("/flags", express.static(path.join(__dirname, "public/flags")));
 
-app.get('/api/languages', async (req, res) => {
-  try {
-    const languages = await prisma.language.findMany({
-      orderBy: { order: 'asc' }
-    });
-    res.json(languages);
-  } catch (error) {
-    console.error("Fehler beim Laden der Sprachen:", error);
-    res.status(500).json({ error: "Fehler beim Laden der Sprachen" });
-  }
-});
-app.use('/flags', express.static(path.join(__dirname, 'public/flags')));
+// --- API Routes ---
+app.use("/api", apiRoutes); // Master-Router (enthält idealerweise projects & auth)
+app.use("/api/documents", documentRoutes);
+app.use("/api/languages", languageRoutes);
 
 // Health-Check Endpunkt (sehr nützlich für Server-Monitoring & Self-Hosting)
 app.get("/health", (req, res) => {
@@ -84,9 +58,9 @@ app.get("/health", (req, res) => {
 // Centralized Error Handling Middleware (MUSS als letztes eingebunden werden)
 app.use(errorHandler);
 
-// Server Start
+// --- Server Start ---
 app.listen(PORT, () => {
   console.log(
-    `Backend läuft erfolgreich im ${process.env.NODE_ENV || "development"} Modus auf Port ${PORT}`,
+    `Backend läuft erfolgreich im ${process.env.NODE_ENV || "development"} Modus auf Port ${PORT}`
   );
 });

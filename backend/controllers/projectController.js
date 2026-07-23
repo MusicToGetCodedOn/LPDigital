@@ -1,3 +1,4 @@
+// controllers/projectController.js
 const { prisma } = require('../config/db');
 
 const getProjects = async (req, res, next) => {
@@ -8,7 +9,7 @@ const getProjects = async (req, res, next) => {
       id: p.id,
       title: p.title,
       category: p.category,
-      tags: p.tags.split(','),
+      tags: p.tags ? p.tags.split(',') : [],
       shortDesc: p.shortDesc,
       imageUrl: p.imageUrl,
       links: {
@@ -28,4 +29,25 @@ const getProjects = async (req, res, next) => {
   }
 };
 
-module.exports = { getProjects };
+const getProjectById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const project = await prisma.project.findUnique({
+      where: { id: id },
+    });
+    
+    if (!project) {
+      return res.status(404).json({ error: "Projekt nicht gefunden" });
+    }
+    res.json(project);
+  } catch (error) {
+    console.error("Fehler beim Laden des Projekts:", error);
+    res.status(500).json({ error: "Fehler beim Laden des Projekts" });
+  }
+};
+
+// Beide Funktionen gemeinsam exportieren
+module.exports = { 
+  getProjects, 
+  getProjectById 
+};

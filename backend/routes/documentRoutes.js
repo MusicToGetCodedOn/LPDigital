@@ -1,8 +1,13 @@
+// routes/documentRoutes.js
 const express = require('express');
 const router = express.Router();
-const { getDocuments } = require('../controllers/documentController');
+const { getAllDocuments, downloadDocument } = require('../controllers/documentController');
+const { authenticateToken } = require('../middleware/authMiddleware');
 
-// Falls der Bereich geschützt sein soll, kannst du hier deine authMiddleware dazwischenschalten!
-router.get('/', getDocuments);
+// Öffentliche Liste aller Dokumenten-Metadaten (Titel, Kategorie etc.)
+router.get('/', getAllDocuments);
+
+// GESCHÜTZTER ENDPOINT: Nur mit gültigem Auth-Header aufrufbar
+router.get('/download/:filename', authenticateToken , downloadDocument);
 
 module.exports = router;

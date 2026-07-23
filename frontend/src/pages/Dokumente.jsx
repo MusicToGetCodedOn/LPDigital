@@ -8,24 +8,72 @@ const API_BASE_URL = "http://localhost:5000";
 
 function Documents() {
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Download-Funktion via Backend
-  const handleDownload = (fileName) => {
-    const link = document.createElement("a");
-    link.href = `${API_BASE_URL}/documents/${fileName}`;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // Hilfsfunktion: Lädt das PDF geschützt per Fetch mit JWT-Token
+  const fetchProtectedDocument = async (fileName) => {
+    const token = localStorage.getItem("portfolio_token"); // Oder wo du dein JWT speicherst
+
+    const response = await fetch(`${API_BASE_URL}/api/documents/download/${encodeURIComponent(fileName)}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      if (response.status === 401 || response.status === 403) {
+        throw new Error("Du musst eingeloggt sein, um dieses Dokument einzusehen.");
+      }
+      throw new Error("Fehler beim Laden des Dokuments.");
+    }
+
+    // Antwort in ein Blob-Objekt umwandeln
+    const blob = await response.blob();
+    // Temporäre Browser-URL erzeugen
+    return URL.createObjectURL(blob);
   };
 
-  // Öffnet den PDF-Viewer im Modal
-  const handlePreview = (fileName) => {
-    setPreviewUrl(`${API_BASE_URL}/documents/${fileName}`);
+  // Download-Funktion via geschützte API
+  const handleDownload = async (fileName) => {
+    try {
+      setIsLoading(true);
+      const objectUrl = await fetchProtectedDocument(fileName);
+
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Speicher freigeben
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 10000);
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  // Schliesst das Modal
+  // Öffnet den PDF-Viewer im Modal via geschützte API
+  const handlePreview = async (fileName) => {
+    try {
+      setIsLoading(true);
+      const objectUrl = await fetchProtectedDocument(fileName);
+      setPreviewUrl(objectUrl);
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Schliesst das Modal und räumt den Speicher auf
   const closePreview = () => {
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl); // Speicher bereinigen
+    }
     setPreviewUrl(null);
   };
 
@@ -50,10 +98,10 @@ function Documents() {
                 <span className="doc-meta">PDF • Deutsch</span>
               </div>
               <div className="button-group-split">
-                <button className="preview-btn" onClick={() => handlePreview("Lebenslauf_Pérez_Loris.pdf")}>
+                <button className="preview-btn" disabled={isLoading} onClick={() => handlePreview("Lebenslauf_Pérez_Loris.pdf")}>
                   Vorschau
                 </button>
-                <button className="download-btn-small primary-gradient" onClick={() => handleDownload("Lebenslauf_Pérez_Loris.pdf")}>
+                <button className="download-btn-small primary-gradient" disabled={isLoading} onClick={() => handleDownload("Lebenslauf_Pérez_Loris.pdf")}>
                   Download
                 </button>
               </div>
@@ -73,10 +121,10 @@ function Documents() {
                 <span className="doc-meta">PDF • Semesterzeugnis bwd Bern</span>
               </div>
               <div className="button-group-split">
-                <button className="preview-btn" onClick={() => handlePreview("Zeugnis_bwd_IM24A_Perez_Loris_Zeugnis_Berufsmaturität.pdf")}>
+                <button className="preview-btn" disabled={isLoading} onClick={() => handlePreview("Zeugnis_bwd_IM24A_Perez_Loris_Zeugnis_Berufsmaturität.pdf")}>
                   Vorschau
                 </button>
-                <button className="download-btn-small primary-gradient" onClick={() => handleDownload("Zeugnis_bwd_IM24A_Perez_Loris_Zeugnis_Berufsmaturität.pdf")}>
+                <button className="download-btn-small primary-gradient" disabled={isLoading} onClick={() => handleDownload("Zeugnis_bwd_IM24A_Perez_Loris_Zeugnis_Berufsmaturität.pdf")}>
                   Download
                 </button>
               </div>
@@ -87,10 +135,10 @@ function Documents() {
                 <span className="doc-meta">PDF • Modulnoten Berufsschule</span>
               </div>
               <div className="button-group-split">
-                <button className="preview-btn" onClick={() => handlePreview("Zeugnis_gibb_IM24A_Perez_Loris_Zeugnis_Informatik.pdf")}>
+                <button className="preview-btn" disabled={isLoading} onClick={() => handlePreview("Zeugnis_gibb_IM24A_Perez_Loris_Zeugnis_Informatik.pdf")}>
                   Vorschau
                 </button>
-                <button className="download-btn-small primary-gradient" onClick={() => handleDownload("Zeugnis_gibb_IM24A_Perez_Loris_Zeugnis_Informatik.pdf")}>
+                <button className="download-btn-small primary-gradient" disabled={isLoading} onClick={() => handleDownload("Zeugnis_gibb_IM24A_Perez_Loris_Zeugnis_Informatik.pdf")}>
                   Download
                 </button>
               </div>
@@ -110,10 +158,10 @@ function Documents() {
                 <span className="doc-meta">PDF • Praktisches Modul</span>
               </div>
               <div className="button-group-split">
-                <button className="preview-btn" onClick={() => handlePreview("Kursbestätigung_Praxistraining_Pérez_Loris.pdf")}>
+                <button className="preview-btn" disabled={isLoading} onClick={() => handlePreview("Kursbestätigung_Praxistraining_Pérez_Loris.pdf")}>
                   Vorschau
                 </button>
-                <button className="download-btn-small primary-gradient" onClick={() => handleDownload("Kursbestätigung_Praxistraining_Pérez_Loris.pdf")}>
+                <button className="download-btn-small primary-gradient" disabled={isLoading} onClick={() => handleDownload("Kursbestätigung_Praxistraining_Pérez_Loris.pdf")}>
                   Download
                 </button>
               </div>
@@ -125,16 +173,16 @@ function Documents() {
                 <span className="doc-meta">PDF • Kompetenznachweise</span>
               </div>
               <div className="button-grid-quad">
-                <button className="preview-btn-tiny" onClick={() => handlePreview("KNW106_Pérez_Loris.pdf")}>
+                <button className="preview-btn-tiny" disabled={isLoading} onClick={() => handlePreview("KNW106_Pérez_Loris.pdf")}>
                   106 Vorschau
                 </button>
-                <button className="download-btn-small" onClick={() => handleDownload("KNW106_Pérez_Loris.pdf")}>
+                <button className="download-btn-small" disabled={isLoading} onClick={() => handleDownload("KNW106_Pérez_Loris.pdf")}>
                   106 Download
                 </button>
-                <button className="preview-btn-tiny" onClick={() => handlePreview("KNW187_bwd_Pérez_Loris.pdf")}>
+                <button className="preview-btn-tiny" disabled={isLoading} onClick={() => handlePreview("KNW187_bwd_Pérez_Loris.pdf")}>
                   187 Vorschau
                 </button>
-                <button className="download-btn-small" onClick={() => handleDownload("KNW187_bwd_Pérez_Loris.pdf")}>
+                <button className="download-btn-small" disabled={isLoading} onClick={() => handleDownload("KNW187_bwd_Pérez_Loris.pdf")}>
                   187 Download
                 </button>
               </div>
@@ -146,28 +194,28 @@ function Documents() {
                 <span className="doc-meta">PDF • Kompetenznachweise</span>
               </div>
               <div className="button-grid-six">
-                <button className="preview-btn-tiny" onClick={() => handlePreview("KNW210_Pérez_Loris.pdf")}>
+                <button className="preview-btn-tiny" disabled={isLoading} onClick={() => handlePreview("KNW210_Pérez_Loris.pdf")}>
                   210 Box
                 </button>
-                <button className="download-btn-small" onClick={() => handleDownload("KNW210_Pérez_Loris.pdf")}>
+                <button className="download-btn-small" disabled={isLoading} onClick={() => handleDownload("KNW210_Pérez_Loris.pdf")}>
                   210 Down
                 </button>
-                <button className="preview-btn-tiny" onClick={() => handlePreview("KNW294_Pérez_Loris.pdf")}>
+                <button className="preview-btn-tiny" disabled={isLoading} onClick={() => handlePreview("KNW294_Pérez_Loris.pdf")}>
                   294 Box
                 </button>
-                <button className="download-btn-small" onClick={() => handleDownload("KNW294_Pérez_Loris.pdf")}>
+                <button className="download-btn-small" disabled={isLoading} onClick={() => handleDownload("KNW294_Pérez_Loris.pdf")}>
                   294 Down
                 </button>
-                <button className="preview-btn-tiny" onClick={() => handlePreview("KNW295_Pérez_Loris.pdf")}>
+                <button className="preview-btn-tiny" disabled={isLoading} onClick={() => handlePreview("KNW295_Pérez_Loris.pdf")}>
                   295 Box
                 </button>
-                <button className="download-btn-small" onClick={() => handleDownload("KNW295_Pérez_Loris.pdf")}>
+                <button className="download-btn-small" disabled={isLoading} onClick={() => handleDownload("KNW295_Pérez_Loris.pdf")}>
                   295 Down
                 </button>
-                <button className="preview-btn-tiny" onClick={() => handlePreview("KNW335_Pérez_Loris.pdf")}>
+                <button className="preview-btn-tiny" disabled={isLoading} onClick={() => handlePreview("KNW335_Pérez_Loris.pdf")}>
                   335 Box
                 </button>
-                <button className="download-btn-small" onClick={() => handleDownload("KNW335_Pérez_Loris.pdf")}>
+                <button className="download-btn-small" disabled={isLoading} onClick={() => handleDownload("KNW335_Pérez_Loris.pdf")}>
                   335 Down
                 </button>
               </div>
