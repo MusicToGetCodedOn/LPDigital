@@ -6,19 +6,59 @@ import "./ProjectDetail.css";
 const API_BASE_URL = "http://localhost:5000";
 
 const TAG_COLORS = {
-  mongodb: { bg: "rgba(16, 185, 129, 0.25)", border: "#10b981", text: "#6ee7b7" },
+  mongodb: {
+    bg: "rgba(16, 185, 129, 0.25)",
+    border: "#10b981",
+    text: "#6ee7b7",
+  },
   react: { bg: "rgba(14, 165, 233, 0.25)", border: "#0ea5e9", text: "#7dd3fc" },
-  "react native": { bg: "rgba(14, 165, 233, 0.25)", border: "#0ea5e9", text: "#7dd3fc" },
+  "react native": {
+    bg: "rgba(14, 165, 233, 0.25)",
+    border: "#0ea5e9",
+    text: "#7dd3fc",
+  },
   docker: { bg: "rgba(2, 132, 199, 0.25)", border: "#0284c7", text: "#38bdf8" },
-  "docker-compose": { bg: "rgba(2, 132, 199, 0.25)", border: "#0284c7", text: "#38bdf8" },
-  opentofu: { bg: "rgba(249, 115, 22, 0.25)", border: "#f97316", text: "#ffedd5" },
-  terraform: { bg: "rgba(168, 85, 247, 0.25)", border: "#a855f7", text: "#e9d5ff" },
-  javascript: { bg: "rgba(234, 179, 8, 0.25)", border: "#eab308", text: "#fef08a" },
-  typescript: { bg: "rgba(59, 130, 246, 0.25)", border: "#3b82f6", text: "#93c5fd" },
-  "node.js": { bg: "rgba(34, 197, 94, 0.25)", border: "#22c55e", text: "#86efac" },
+  "docker-compose": {
+    bg: "rgba(2, 132, 199, 0.25)",
+    border: "#0284c7",
+    text: "#38bdf8",
+  },
+  opentofu: {
+    bg: "rgba(249, 115, 22, 0.25)",
+    border: "#f97316",
+    text: "#ffedd5",
+  },
+  terraform: {
+    bg: "rgba(168, 85, 247, 0.25)",
+    border: "#a855f7",
+    text: "#e9d5ff",
+  },
+  javascript: {
+    bg: "rgba(234, 179, 8, 0.25)",
+    border: "#eab308",
+    text: "#fef08a",
+  },
+  typescript: {
+    bg: "rgba(59, 130, 246, 0.25)",
+    border: "#3b82f6",
+    text: "#93c5fd",
+  },
+  "node.js": {
+    bg: "rgba(34, 197, 94, 0.25)",
+    border: "#22c55e",
+    text: "#86efac",
+  },
   python: { bg: "rgba(234, 179, 8, 0.25)", border: "#3b82f6", text: "#fde047" },
-  csharp: { bg: "rgba(168, 85, 247, 0.25)", border: "#9333ea", text: "#f3e8ff" },
-  ".net maui": { bg: "rgba(147, 51, 234, 0.25)", border: "#a855f7", text: "#f3e8ff" },
+  csharp: {
+    bg: "rgba(168, 85, 247, 0.25)",
+    border: "#9333ea",
+    text: "#f3e8ff",
+  },
+  ".net maui": {
+    bg: "rgba(147, 51, 234, 0.25)",
+    border: "#a855f7",
+    text: "#f3e8ff",
+  },
   java: { bg: "rgba(239, 68, 68, 0.25)", border: "#ef4444", text: "#fca5a5" },
   api: { bg: "rgba(20, 184, 166, 0.25)", border: "#14b8a6", text: "#99f6e4" },
   ai: { bg: "rgba(236, 72, 153, 0.25)", border: "#ec4899", text: "#fbcfe8" },
@@ -79,7 +119,9 @@ function ProjectDetail() {
     return (
       <div className="detail-error">
         <h2>Projekt nicht gefunden</h2>
-        <button onClick={() => navigate("/projects")}>Zurück zur Übersicht</button>
+        <button onClick={() => navigate("/projects")}>
+          Zurück zur Übersicht
+        </button>
       </div>
     );
   }
@@ -94,10 +136,7 @@ function ProjectDetail() {
       {/* HERO BILD BANNER */}
       {project.imageUrl && (
         <div className="detail-hero-banner">
-          <img
-            src={`${API_BASE_URL}${project.imageUrl}`}
-            alt={project.title}
-          />
+          <img src={`${API_BASE_URL}${project.imageUrl}`} alt={project.title} />
           <div className="detail-hero-overlay" />
         </div>
       )}
@@ -105,7 +144,9 @@ function ProjectDetail() {
       {/* HEADER INFO */}
       <div className="detail-header-content">
         <div className="detail-meta">
-          <span className={`category-badge badge-${project.category?.toLowerCase()}`}>
+          <span
+            className={`category-badge badge-${project.category?.toLowerCase()}`}
+          >
             {project.category}
           </span>
           <div className="detail-tags">
@@ -147,16 +188,39 @@ function ProjectDetail() {
 
       {/* ACTION LINKS */}
       <div className="detail-actions">
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="project-link-btn github-btn"
-          >
-            GitHub Repository
-          </a>
-        )}
+        <div className="project-links">
+          {project.githubFrontend && (
+            <a
+              href={project.githubFrontend}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-github"
+            >
+              GitHub (Frontend)
+            </a>
+          )}
+          {project.githubBackend && (
+            <a
+              href={project.githubBackend}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-github"
+            >
+              GitHub (Backend)
+            </a>
+          )}
+          {/* Fallback für einfache/einzelne Repositories */}
+          {project.githubUrl && !project.githubFrontend && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-github"
+            >
+              GitHub
+            </a>
+          )}
+        </div>
         {project.liveUrl && (
           <a
             href={project.liveUrl}

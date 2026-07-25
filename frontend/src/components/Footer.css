@@ -5,6 +5,9 @@
   margin-top: auto; /* Drückt den Footer immer ganz nach unten */
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
 }
 
 .footer-content {
@@ -15,10 +18,21 @@
   align-items: center;
   padding: 1.2rem 2rem;
   border-radius: 16px;
-  background: rgba(15, 10, 25, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    90deg, 
+    rgba(15, 10, 30, 0.35) 0%, 
+    rgba(45, 15, 75, 0.25) 50%, 
+    rgba(15, 10, 30, 0.35) 100%
+  ) !important;
+  
+  /* Weichzeichner angepasst für einen subtileren Glass-Look */
+  -webkit-backdrop-filter: blur(10px) saturate(160%) !important;
+  backdrop-filter: blur(10px) saturate(160%) !important;
+  
+  /* Optische Details */
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
 }
 
 .footer-logo {
@@ -114,4 +128,52 @@
 
 .impressum-link:hover {
   text-decoration: underline;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-col-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #c084fc;
+  margin-bottom: 0.2rem;
+}
+
+.footer-link-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-start;
+}
+
+.footer-nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.footer-nav-link:hover {
+  color: #a855f7;
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.5);
+}
+
+/* Stellt sicher, dass der Button exakt wie die NavLinks aussieht */
+.footer-link-btn {
+  padding: 0;
+  text-align: left;
+}
+
+/* Responsive Verhalten fuer Mobilgeraete */
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
