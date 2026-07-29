@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom"; // Falls du react-router nutzt
+import github from "../icons/github.png"; // Beispiel für ein GitHub-Icon, falls du eins hast
 import "./Footer.css";
 
 function Footer() {
@@ -17,52 +18,44 @@ function Footer() {
   return (
     <footer className="footer-container">
       <div className="footer-content">
-        
         {/* SPALTE 1: BRANDING & COPYRIGHT */}
         <div className="footer-col footer-brand">
           <span className="footer-logo">&lt;/&gt; LPDigital</span>
           <p className="footer-copy">
-            © {new Date().getFullYear()} Loris Pérez.<br />
+            © {new Date().getFullYear()} Loris Pérez.
+            <br />
             Alle Rechte vorbehalten.
           </p>
         </div>
 
         {/* SPALTE 2: SCHNELL-NAVIGATION */}
-        <div className="footer-col footer-links">
-          <span className="footer-col-title">Navigation</span>
-          <div className="footer-link-group">
-            <Link to="/" className="footer-nav-link">Home</Link>
-            <Link to="/about" className="footer-nav-link">Über mich</Link>
-            <Link to="/projects" className="footer-nav-link">Projekte</Link>
-            <Link to="/documents" className="footer-nav-link">Dokumente</Link>
-          </div>
-        </div>
-
-        {/* SPALTE 3: EXTERNE LINKS & RECHTLICHES */}
         <div className="footer-col footer-socials">
           <span className="footer-col-title">Links & Rechtliches</span>
           <div className="footer-link-group">
-            <a 
-              href="https://github.com/MusicToGetCodedOn" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="footer-nav-link"
+            <a
+              href="https://github.com/MusicToGetCodedOn"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-nav-link footer-social-link"
             >
-              GitHub ↗
+              <img src={github} alt="GitHub" className="footer-icon" />
+              <span>GitHub ↗</span>
             </a>
             <button className="footer-link-btn" onClick={toggleImpressum}>
               Impressum
             </button>
           </div>
         </div>
-
       </div>
 
       {/* IMPRESSUM MODAL */}
       {showImpressum &&
         createPortal(
           <div className="modal-overlay" onClick={toggleImpressum}>
-            <div className="modal-container" onClick={(e) => e.stopPropagation()}>
+            <div
+              className="modal-container"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="modal-header">
                 <h3>Impressum</h3>
                 <button className="modal-close-btn" onClick={toggleImpressum}>
@@ -72,35 +65,46 @@ function Footer() {
               <div className="modal-body impressum-text">
                 <h4>Angaben gemäß Schweizer Recht</h4>
                 <p>
-                  <strong>Betreiber der Website:</strong><br />
-                  Loris Pérez<br />
+                  <strong>Betreiber der Website:</strong>
+                  <br />
+                  Loris Pérez
+                  <br />
                   Hinterkappelen, Schweiz
                 </p>
 
                 <h4>Kontakt:</h4>
                 <p>
-                  E-Mail: kontakt@lpdigital.ch<br />
+                  E-Mail: loris.perez@proton.me
+                  <br />
                   Website:{" "}
-                  <a href={currentUrl} target="_blank" rel="noreferrer" className="impressum-link">
+                  <a
+                    href={currentUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="impressum-link"
+                  >
                     {currentUrl}
                   </a>
                 </p>
 
                 <h4>Haftungsausschluss:</h4>
                 <p>
-                  Der Autor übernimmt keinerlei Gewähr hinsichtlich der inhaltlichen Richtigkeit,
-                  Genauigkeit, Aktualität, Zuverlässigkeit und Vollständigkeit der Informationen.
+                  Der Autor übernimmt keinerlei Gewähr hinsichtlich der
+                  inhaltlichen Richtigkeit, Genauigkeit, Aktualität,
+                  Zuverlässigkeit und Vollständigkeit der Informationen.
                 </p>
 
                 <h4>Urheberrechte:</h4>
                 <p>
-                  Die Urheber- und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien
-                  auf dieser Website gehören ausschließlich Loris Pérez oder den speziell genannten Rechtsinhabern.
+                  Die Urheber- und alle anderen Rechte an Inhalten, Bildern,
+                  Fotos oder anderen Dateien auf dieser Website gehören
+                  ausschließlich Loris Pérez oder den speziell genannten
+                  Rechtsinhabern.
                 </p>
               </div>
             </div>
           </div>,
-          document.body
+          document.body,
         )}
     </footer>
   );

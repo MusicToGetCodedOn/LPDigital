@@ -177,3 +177,30 @@
     align-items: flex-start;
   }
 }
+
+/* Social Link mit Icon Flexbox Layout */
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* Abstand zwischen Icon und Text */
+  text-decoration: none;
+}
+
+/* Icon Styling */
+.footer-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  /* Macht ein dunkles PNG auf dunklem Hintergrund hell/weiss */
+  filter: brightness(0) invert(0.9); 
+  opacity: 0.8;
+  transition: opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover-Effekt fuer das Icon gemeinsam mit dem Link */
+.footer-social-link:hover .footer-icon {
+  opacity: 1;
+  transform: scale(1.1);
+  /* Violettes Leuchten passend zu deiner Accent-Farbe (#a855f7) */
+  filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(168, 85, 247, 0.8));
+}
