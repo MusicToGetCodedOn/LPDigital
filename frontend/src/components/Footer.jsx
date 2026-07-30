@@ -29,6 +29,17 @@ function Footer() {
         </div>
 
         {/* SPALTE 2: SCHNELL-NAVIGATION */}
+        <div className="footer-col footer-links">
+          <span className="footer-col-title">Navigation</span>
+          <div className="footer-link-group">
+            <Link to="/" className="footer-nav-link">Home</Link>
+            <Link to="/about" className="footer-nav-link">Über mich</Link>
+            <Link to="/projects" className="footer-nav-link">Projekte</Link>
+            <Link to="/documents" className="footer-nav-link">Dokumente</Link>
+          </div>
+        </div>
+
+        {/* SPALTE 2: SCHNELL-NAVIGATION */}
         <div className="footer-col footer-socials">
           <span className="footer-col-title">Links & Rechtliches</span>
           <div className="footer-link-group">
@@ -63,13 +74,13 @@ function Footer() {
                 </button>
               </div>
               <div className="modal-body impressum-text">
-                <h4>Angaben gemäß Schweizer Recht</h4>
+                <h4>Angaben gemäss Schweizer Recht</h4>
                 <p>
                   <strong>Betreiber der Website:</strong>
                   <br />
                   Loris Pérez
                   <br />
-                  Hinterkappelen, Schweiz
+                  Hinterkappelen, Bern
                 </p>
 
                 <h4>Kontakt:</h4>

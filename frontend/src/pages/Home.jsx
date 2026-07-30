@@ -1,10 +1,18 @@
 import react from 'react';
+import HeroSection from '../components/HeroSection';
 
 function Home() {
   return (
-    <div>
-      <h1>Willkommen auf meiner Portfolio-Seite!</h1>
-      <p>Hier findest du Informationen über mich, meine Projekte und wie du mich kontaktieren kannst.</p>
+  <div className="home-page-container">
+    <HeroSection />
+
+    {/* Hier folgen als Nächstes:
+          2. TechFocus
+          3. FeaturedProjects
+          4. CareerGoal
+          5. CallToAction
+      */}
+
     </div>
   );
 }
