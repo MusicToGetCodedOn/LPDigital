@@ -30,7 +30,7 @@ function About() {
         {/* LINKE SPALTE: PERSÖNLICHES & SPRACHEN */}
         <div className="about-column">
           {/* Hobbys Box */}
-          <div className="about-card glass-box">
+          <div className="about-card">
             <h3>Hobbies & Interessen</h3>
             <div className="hobby-item">
               <div className="hobby-header">
@@ -66,7 +66,7 @@ function About() {
           </div>
 
           {/* Sprachen Box */}
-          <div className="about-card glass-box">
+          <div className="about-card">
             <h3>Sprachkenntnisse</h3>
             {loading ? (
               <p>Sprachen werden geladen...</p>
@@ -94,7 +94,8 @@ function About() {
 
         {/* RECHTE SPALTE: WERDEGANG (TIMELINE) */}
         <div className="about-column">
-          <div className="about-card glass-box">
+          <div className="about-card
+          ">
             <h3>Ausbildung & Berufserfahrung</h3>
             <div className="timeline">
               {/* Station 1: IMS */}

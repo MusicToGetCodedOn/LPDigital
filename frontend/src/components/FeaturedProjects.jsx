@@ -12,12 +12,14 @@ function FeaturedProjects() {
   // Gewünschte Projekt-IDs in exakter Reihenfolge
   const featuredIds = ["stalkr", "gamebase", "lpfinance"];
 
+  const API_BASE_URL = "http://localhost:5000";
+
   // Dynamische Live-URL für das GitHub Graph
   const githubGraphUrl = "https://ghchart.rshah.org/a855f7/MusicToGetCodedOn";
 
   useEffect(() => {
     // Abrufen aller Projekte vom Backend
-    fetch("http://localhost:5000/api/projects")
+    fetch(`${API_BASE_URL}/api/projects`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Fehler beim Laden der Projekte");

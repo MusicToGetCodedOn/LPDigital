@@ -76,7 +76,7 @@ function HeroSection() {
 
         {/* Rechte Spalte: Live Terminal / Architecture Snippet */}
         <div className="hero-visual">
-          <div className="terminal-window glass-box">
+          <div className="terminal-window">
             <div className="terminal-header">
               <div className="terminal-buttons">
                 <span className="btn-close"></span>
