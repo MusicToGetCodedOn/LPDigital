@@ -1,0 +1,258 @@
+/* src/components/home/FeaturedProjects.css */
+.projects-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.projects-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Header */
+.projects-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+/* Single Project Card */
+.project-card {
+  padding: 2.2rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(168, 85, 247, 0.4) !important;
+}
+
+.project-category {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #c084fc;
+}
+
+.project-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 0.3rem;
+}
+
+.project-desc {
+  font-size: 0.925rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-tag-pill {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.project-btn {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.project-btn-github {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.project-btn-github:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #c084fc;
+}
+
+.project-btn-details {
+  background: rgba(168, 85, 247, 0.15);
+  color: #e9d5ff;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.project-btn-details:hover {
+  background: rgba(168, 85, 247, 0.25);
+  color: #fff;
+}
+
+/* GitHub Activity Card Styling */
+.github-activity-card {
+  padding: 2rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: rgba(15, 10, 25, 0.6) !important;
+  border: 1px solid rgba(168, 85, 247, 0.25) !important;
+}
+
+.github-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.github-title-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.github-icon {
+  font-size: 1.8rem;
+}
+
+.github-title-group h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.github-title-group p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.github-profile-link {
+  font-size: 0.875rem;
+  color: #c084fc;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  transition: all 0.2s ease;
+}
+
+.github-profile-link:hover {
+  background: rgba(168, 85, 247, 0.2);
+  color: #fff;
+}
+
+/* Live GitHub Graph Optimierungen */
+.github-graph-container {
+  width: 100%;
+  min-height: 120px;
+  overflow-x: auto;
+  padding: 1.25rem 1rem;
+  border-radius: 12px;
+  background: rgba(10, 5, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.github-graph-img {
+  width: 100%;
+  min-width: 680px; /* Bleibt auch mobil gut lesbar */
+  height: auto;
+  display: block;
+  filter: invert(0.92) hue-rotate(180deg) brightness(0.95) contrast(1.1);
+  transition: opacity 0.3s ease;
+}
+
+.github-graph-img.loading {
+  opacity: 0;
+  position: absolute;
+}
+
+.github-graph-img.loaded {
+  opacity: 1;
+}
+
+/* Skeleton Loading State */
+.github-graph-skeleton {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 2rem;
+  animation: pulse 1.5s infinite;
+}
+
+/* States fuer dynamisches Laden */
+.projects-loading,
+.projects-error,
+.projects-empty {
+  grid-column: 1 / -1;
+  padding: 3rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  border-radius: 16px;
+}
+
+.projects-error {
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+.glass-box {
+    background: linear-gradient(
+    90deg, 
+    rgba(15, 10, 30, 0.35) 0%, 
+    rgba(45, 15, 75, 0.25) 50%, 
+    rgba(15, 10, 30, 0.35) 100%
+  ) !important;
+  
+  /* Weichzeichner angepasst für einen subtileren Glass-Look */
+  -webkit-backdrop-filter: blur(10px) saturate(160%) !important;
+  backdrop-filter: blur(10px) saturate(160%) !important;
+  
+  /* Optische Details */
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+}

@@ -1,16 +1,20 @@
 import react from 'react';
 import HeroSection from '../components/HeroSection';
-
+import TechFocus from '../components/TechFocus';
+import FeaturedProjects from '../components/FeaturedProjects';
 function Home() {
   return (
   <div className="home-page-container">
     <HeroSection />
 
-    {/* Hier folgen als Nächstes:
-          2. TechFocus
-          3. FeaturedProjects
-          4. CareerGoal
-          5. CallToAction
+    <TechFocus />
+
+    <FeaturedProjects />
+
+
+    {/* ToDo next
+          CareerGoal
+          CallToAction
       */}
 
     </div>

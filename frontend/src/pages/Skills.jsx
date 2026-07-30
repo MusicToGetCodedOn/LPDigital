@@ -41,7 +41,7 @@ function Skills() {
 
       <div className="scrollstack">
         {/* CARD 1: SOFTSKILLS */}
-        <div className="stack-card">
+        <div className="stack-card glass-box">
           <h3>Softskills</h3>
           <ul className="softskill-list">
             <li>Teamfähigkeit</li>
@@ -54,7 +54,7 @@ function Skills() {
 
         {/* CARD 2: FRONTEND */}
         {/* CARD 2: FRONTEND */}
-        <div className="stack-card">
+        <div className="stack-card glass-box">
           <h3>Frontend</h3>
           <div className="techskill-container">
             {/* HTML & CSS */}
@@ -170,7 +170,7 @@ function Skills() {
         </div>
 
         {/* CARD 3: BACKEND */}
-        <div className="stack-card">
+        <div className="stack-card glass-box">
           <h3>Backend</h3>
           <div className="techskill-container">
             <div className="skill-progress-wrapper">
@@ -237,7 +237,7 @@ function Skills() {
         </div>
 
         {/* CARD 4: DATENBANKEN */}
-        <div className="stack-card">
+        <div className="stack-card glass-box">
           <h3>Datenbanken</h3>
           <div className="techskill-container">
             <div className="skill-progress-wrapper">
@@ -304,7 +304,7 @@ function Skills() {
         </div>
 
         {/* CARD 5: TOOLS & CLOUD */}
-        <div className="stack-card">
+        <div className="stack-card glass-box">
           <h3>IDE's & Tools</h3>
           <div className="techskill-container">
             <div className="skill-progress-wrapper">
