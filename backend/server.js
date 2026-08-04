@@ -26,6 +26,8 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
   "http://localhost",
+  "http://192.168.1.130",
+  "http://192.168.1.130:80",
   clientUrl,
 ].filter(Boolean);
 
