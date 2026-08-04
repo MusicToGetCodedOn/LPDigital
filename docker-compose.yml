@@ -1,6 +1,6 @@
 services:
   backend:
-    image: ghcr.io/MusicToGetCodedOn/lpdigital-backend:latest
+    image: ghcr.io/musictogetcodedon/lpdigital-backend:latest
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -15,7 +15,7 @@ services:
       - ./backend/public/documents:/usr/src/app/public/documents
 
   frontend:
-    image: ghcr.io/MusicToGetCodedOn/lpdigital-frontend:latest
+    image: ghcr.io/musictogetcodedon/lpdigital-frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
