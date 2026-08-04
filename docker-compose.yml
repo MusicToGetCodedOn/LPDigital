@@ -30,6 +30,16 @@ services:
       - frontend/.env
     depends_on:
       - backend
+  
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: always
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=60
+      - WATCHTOWER_CLEANUP=true
+    volumes:
+      - //var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   db-data:
