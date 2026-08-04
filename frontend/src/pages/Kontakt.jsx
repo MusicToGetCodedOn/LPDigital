@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import "./Kontakt.css";
 import profileImg from "../img/portrait.jpg"; // Falls vorhanden, sonst Fallback nutzen
 
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function Kontakt() {
   const [formData, setFormData] = useState({
     name: "",
@@ -21,7 +24,7 @@ function Kontakt() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

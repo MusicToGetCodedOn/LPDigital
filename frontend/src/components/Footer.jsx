@@ -8,7 +8,6 @@ import "./Footer.css";
 function Footer() {
   const [showImpressum, setShowImpressum] = useState(false);
 
-  // Dynamische URL ermitteln (z. B. "http://localhost:5173" oder Live-Domain)
   const currentUrl = `${window.location.protocol}//${window.location.host}`;
 
   const toggleImpressum = () => {

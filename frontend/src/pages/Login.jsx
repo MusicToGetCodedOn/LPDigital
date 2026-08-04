@@ -9,8 +9,7 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Flexibler API-Pfad (nutzt spätere ENV-Variablen oder den Fallback localhost)
-  const API_URL = 'http://localhost:5000/api';
+  const API_URL = import.meta.env.VITE_API_BASE_URL ;
 
   const handleLogin = async (e) => {
     e.preventDefault();

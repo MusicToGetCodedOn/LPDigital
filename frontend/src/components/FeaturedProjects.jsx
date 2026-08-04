@@ -12,7 +12,7 @@ function FeaturedProjects() {
   // Gewünschte Projekt-IDs in exakter Reihenfolge
   const featuredIds = ["stalkr", "gamebase", "lpfinance"];
 
-  const API_BASE_URL = "http://localhost:5000";
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Dynamische Live-URL für das GitHub Graph
   const githubGraphUrl = "https://ghchart.rshah.org/a855f7/MusicToGetCodedOn";
