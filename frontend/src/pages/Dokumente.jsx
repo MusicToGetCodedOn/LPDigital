@@ -14,7 +14,7 @@ function Documents() {
   const fetchProtectedDocument = async (fileName) => {
     const token = localStorage.getItem("portfolio_token"); // Oder wo du dein JWT speicherst
 
-    const response = await fetch(`${API_BASE_URL}/api/documents/download/${encodeURIComponent(fileName)}`, {
+    const response = await fetch(`${API_BASE_URL}/api/private/documents/download/${encodeURIComponent(fileName)}`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
