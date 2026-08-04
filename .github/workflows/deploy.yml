@@ -3,7 +3,12 @@ name: Build and Push Docker Images
 on:
   push:
     branches:
-      - main  # Oder 'master', falls dein Branch so heißt
+      - main  # Oder 'master'
+
+# WICHTIG: Berechtigungen für das GITHUB_TOKEN setzen
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   build-and-push:
@@ -26,7 +31,6 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          # Direkt kleingeschrieben eintragen:
           tags: ghcr.io/musictogetcodedon/lpdigital-backend:latest
 
       - name: Build and Push Frontend
@@ -35,7 +39,6 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           build-args: |
-            VITE_API_BASE_URL=http://192.168.1.130:5000/api
+            VITE_API_BASE_URL=http://192.168.1.130:5000
           push: true
-          # Direkt kleingeschrieben eintragen:
           tags: ghcr.io/musictogetcodedon/lpdigital-frontend:latest
