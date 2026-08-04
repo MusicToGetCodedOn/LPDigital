@@ -19,12 +19,14 @@ const PORT = process.env.PORT || 5000;
 // Datenbankverbindung initialisieren
 connectDB();
 
+const clientUrl = process.env.CLIENT_URL ? process.env.CLIENT_URL.replace(/\/$/, "") : null;
+
 // --- Global Middlewares ---
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
   "http://localhost",
-  process.env.CLIENT_URL,
+  clientUrl,
 ].filter(Boolean);
 
 app.use(
