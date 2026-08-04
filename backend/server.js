@@ -24,7 +24,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
   "http://localhost",
-  process.env.CLIENT_URL, // Liest https://deine-domain.ch aus der .env
+  process.env.CLIENT_URL,
 ].filter(Boolean);
 
 app.use(

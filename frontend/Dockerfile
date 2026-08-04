@@ -9,7 +9,7 @@ RUN npm ci
 COPY . .
 
 # Übergabe der API-URL beim Build
-ENV VITE_API_URL=http://localhost:5000
+ENV VITE_API_BASE_URL=http://192.168.1.130:5000
 RUN npm run build
 
 # --- Stage 2: Production Webserver ---
