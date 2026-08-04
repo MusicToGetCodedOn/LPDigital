@@ -11,6 +11,7 @@ const errorHandler = require("./middleware/errorHandler");
 const apiRoutes = require("./routes"); // Bindet routes/index.js ein
 const documentRoutes = require("./routes/documentRoutes"); // Geändert von import zu require
 const languageRoutes = require("./routes/languageRoutes");
+const contactRoutes = require('./routes/contactRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -49,6 +50,7 @@ app.use("/flags", express.static(path.join(__dirname, "public/flags")));
 app.use("/api", apiRoutes); // Master-Router (enthält idealerweise projects & auth)
 app.use("/api/documents", documentRoutes);
 app.use("/api/languages", languageRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Health-Check Endpunkt (sehr nützlich für Server-Monitoring & Self-Hosting)
 app.get("/health", (req, res) => {
