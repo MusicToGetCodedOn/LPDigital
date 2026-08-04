@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   backend:
     build:
@@ -9,7 +7,6 @@ services:
     restart: always
     ports:
       - "5000:5000"
-    # Liest die Variablen direkt aus der .env-Datei im Hauptverzeichnis
     env_file:
       - backend/.env
     volumes:
@@ -20,10 +17,15 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        # Reicht VITE_API_BASE_URL aus der frontend/.env an Vite beim Bauen weiter!
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
     container_name: LPDigital-frontend
     restart: always
     ports:
       - "80:80"
+    env_file:
+      - frontend/.env
     depends_on:
       - backend
 

@@ -29,19 +29,21 @@ const allowedOrigins = [
   clientUrl,
 ].filter(Boolean);
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("CORS nicht erlaubt für diese Origin: " + origin));
-      }
-    },
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: function (origin, callback) {
+    // Erlaubt Requests ohne Origin (z.B. Server-to-Server, Postman) 
+    // oder wenn die Origin in den allowedOrigins vorkommt
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log("CORS blockiert für Origin:", origin);
+      callback(new Error("Nicht erlaubt durch CORS"));
+    }
+  },
+  credentials: true
+}));
+
+
 app.use(express.json());
 
 // --- Statische Dateien (Bilder, Flaggen etc.) ---
