@@ -31,7 +31,8 @@ services:
       - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
       - PORT=5000
     volumes:
-      - ./backend/public/documents:/usr/src/app/public/documents
+      - ./backend/private:/app/private
+      - ./backend/public:/app/public
     depends_on:
       - postgres
     networks:
