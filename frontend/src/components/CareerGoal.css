@@ -158,26 +158,28 @@
 .career-timeline {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
   position: relative;
-  padding-left: 0.25rem;
+  padding-left: 0.5rem;
   margin-top: 0.5rem;
 }
 
 .timeline-item {
   display: flex;
-  gap: 1.25rem;
+  gap: 1.5rem; /* Abstand zwischen Dot und Text vergrößert */
   position: relative;
+  align-items: flex-start;
 }
 
+/* Vertikale Linie - Exakt auf die Mitte des 14px-Dots ausgerichtet (7px) */
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: 6px;
-  top: 22px;
-  bottom: -22px;
+  left: 6px; /* Zentriert hinter dem 14px Dot */
+  top: 20px;
+  bottom: -2rem; /* Reicht exakt bis zum nächsten Item */
   width: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .timeline-item:last-child::before {
@@ -190,37 +192,44 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.2);
   border: 2px solid #0f0a19;
-  margin-top: 4px;
+  margin-top: 2px; /* Ausrichtung auf Höhe der Badge-Zeile */
   flex-shrink: 0;
-  z-index: 1;
+  z-index: 2;
+  position: relative;
 }
 
 .timeline-item.active .timeline-dot {
   background: #a855f7;
-  box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
 }
 
+/* Text-Container sauber abgetrennt */
 .timeline-content {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.35rem;
+  flex: 1;
 }
 
 .timeline-date {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #c084fc;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .timeline-content h4 {
-  font-size: 0.975rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: #fff;
   margin: 0;
+  line-height: 1.3;
 }
 
 .timeline-content p {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
 }
