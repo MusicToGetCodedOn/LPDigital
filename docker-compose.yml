@@ -1,37 +1,58 @@
+version: '3.8'
+
 services:
+  # 1. PostgreSQL Datenbank-Container
+  postgres:
+    image: postgres:16-alpine
+    container_name: LPDigital-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - lpdigital-network
+
+  # 2. Backend API Container
   backend:
     image: ghcr.io/musictogetcodedon/lpdigital-backend:latest
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: LPDigital-backend
-    command: sh -c "npx prisma db push && node prisma/seed.js && npm start"
     restart: always
     ports:
       - "5000:5000"
-    env_file:
-      - backend/.env
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - PORT=5000
     volumes:
-      - db-data:/usr/src/app/prisma/data
       - ./backend/public/documents:/usr/src/app/public/documents
+    depends_on:
+      - postgres
+    networks:
+      - lpdigital-network
 
+  # 3. Frontend Container
   frontend:
     image: ghcr.io/musictogetcodedon/lpdigital-frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        # Reicht VITE_API_BASE_URL aus der frontend/.env an Vite beim Bauen weiter!
         VITE_API_BASE_URL: ${VITE_API_BASE_URL}
     container_name: LPDigital-frontend
     restart: always
     ports:
       - "80:80"
-    env_file:
-      - frontend/.env
     depends_on:
       - backend
-   
+    networks:
+      - lpdigital-network
+
+  # 4. Watchtower (Auto-Update-Dienst)
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
@@ -43,5 +64,10 @@ services:
     volumes:
       - //var/run/docker.sock:/var/run/docker.sock
 
+# Netzwerke und Volumes definieren
+networks:
+  lpdigital-network:
+    driver: bridge
+
 volumes:
-  db-data:
+  postgres_data:

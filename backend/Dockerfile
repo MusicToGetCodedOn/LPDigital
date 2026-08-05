@@ -18,6 +18,5 @@ COPY . .
 # Port freigeben
 EXPOSE 5000
 
-# Start-Befehl: Synchronisiert DB-Schema und startet den Server
-# (Tipp: 'seed.js' nur ausführen, wenn die DB leer ist, oder via separatem Befehl)
-CMD ["sh", "-c", "npx prisma db push && node server.js"]
+# Start-Befehl: Wendet Prisma-Migrationen an, führt das Seeding aus und startet Express
+CMD ["sh", "-c", "npx prisma migrate deploy && node prisma/seed.js && node server.js"]
