@@ -106,20 +106,48 @@
 }
 
 @media (max-width: 600px) {
+  .cta-section {
+    padding: 2.5rem 1rem 4rem 1rem;
+  }
+
   .cta-title {
     font-size: 1.75rem;
   }
   
   .cta-container {
-    padding: 3rem 1.5rem;
+    padding: 2.5rem 1.25rem;
+    border-radius: 18px;
+  }
+
+  .cta-content {
+    gap: 1rem;
+  }
+
+  .cta-subtitle {
+    font-size: 0.95rem;
   }
 
   .cta-actions {
     flex-direction: column;
     width: 100%;
+    gap: 0.85rem;
   }
 
   .cta-btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .cta-title {
+    font-size: 1.5rem;
+  }
+
+  .cta-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .cta-container {
+    padding: 2rem 1rem;
   }
 }

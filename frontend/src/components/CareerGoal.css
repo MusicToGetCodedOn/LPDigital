@@ -36,6 +36,65 @@
   }
 }
 
+@media (max-width: 768px) {
+  .career-section {
+    padding: 3rem 1rem;
+  }
+
+  .career-container {
+    gap: 2rem;
+  }
+
+  .career-card {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .career-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .career-card p {
+    font-size: 0.9rem;
+  }
+
+  .career-highlights {
+    gap: 1rem;
+  }
+
+  .career-timeline {
+    gap: 1.1rem;
+  }
+
+  .timeline-item {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .career-section {
+    padding: 2.5rem 0.85rem;
+  }
+
+  .career-card {
+    padding: 1.2rem;
+    border-radius: 16px;
+  }
+
+  .card-badge {
+    font-size: 0.7rem;
+  }
+
+  .timeline-content h4 {
+    font-size: 0.92rem;
+  }
+
+  .timeline-content p,
+  .highlight-content p {
+    font-size: 0.82rem;
+  }
+}
+
 /* Cards Base */
 .career-card {
   padding: 2.5rem;
