@@ -87,6 +87,7 @@
 
   .timeline-content h4 {
     font-size: 0.92rem;
+    margin-left: 0.1rem;
   }
 
   .timeline-content p,
@@ -160,55 +161,61 @@
   flex-direction: column;
   gap: 2rem;
   position: relative;
-  padding-left: 0.5rem;
+  padding-left: 1.5rem; /* Platz für Linie & Dots links */
   margin-top: 0.5rem;
+}
+
+/* Durchgehende vertikale Linie im Hintergrund */
+.career-timeline::before {
+  content: "";
+  position: absolute;
+  left: -.2rem; /* Exakt unter der Mitte der 14px-Dots (0px Padding + 7px Mitte) */
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 1;
 }
 
 .timeline-item {
   display: flex;
-  gap: 1.5rem; /* Abstand zwischen Dot und Text vergrößert */
-  position: relative;
   align-items: flex-start;
+  position: relative;
+  gap: 1rem;
 }
 
-/* Vertikale Linie - Exakt auf die Mitte des 14px-Dots ausgerichtet (7px) */
+/* Keine einzelnen Linien-Abschnitte mehr nötig */
 .timeline-item::before {
-  content: "";
-  position: absolute;
-  left: 6px; /* Zentriert hinter dem 14px Dot */
-  top: 20px;
-  bottom: -2rem; /* Reicht exakt bis zum nächsten Item */
-  width: 2px;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.timeline-item:last-child::before {
   display: none;
 }
 
 .timeline-dot {
+  position: absolute;
+  left: -1.5rem; /* Zieht den Dot genau auf die Linie im Padding */
+  top: 2px;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid #0f0a19;
-  margin-top: 2px; /* Ausrichtung auf Höhe der Badge-Zeile */
+  background: #0f0a19;
+  border: 2px solid rgba(255, 255, 255, 0.4);
   flex-shrink: 0;
-  z-index: 2;
-  position: relative;
+  z-index: 2; /* Über der Linie */
+  box-sizing: border-box;
 }
 
 .timeline-item.active .timeline-dot {
   background: #a855f7;
-  box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
+  border-color: #a855f7;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.9);
 }
 
-/* Text-Container sauber abgetrennt */
+/* Text-Content ohne extra Margins */
 .timeline-content {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
   flex: 1;
+  margin-left: 0;
 }
 
 .timeline-date {
@@ -232,4 +239,65 @@
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
   margin: 0;
+}
+
+/* Container und Card perfekt auf allen Displaygrössen zentrieren */
+.career-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.career-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto; /* Garantiert horizontale Zentrierung */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.career-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Mobile Feinjustierung */
+@media (max-width: 900px) {
+  .career-section {
+    /* Platz für die fixierte Navbar oben schaffen (mindestens 80px bis 100px) */
+    padding: 6rem 1rem 3rem 1rem;
+  }
+
+  .career-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px; /* Verhindert ungewolltes Ausdehnen auf Tablets/Handys */
+    margin: 0 auto;
+  }
+
+  .career-card {
+    width: 100%;
+    box-sizing: border-box;
+    /* Gleichmässiges Innen-Padding für perfekt symmetrischen Rand */
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .career-section {
+    padding-top: 5.5rem; /* Sicherer Abstand zur Navbar */
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .career-card {
+    padding: 1.5rem 1.25rem;
+  }
 }
