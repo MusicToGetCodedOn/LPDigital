@@ -217,11 +217,54 @@
    wird diese Klasse hinzugefügt und überschreibt die Weite mit dem inline-Wert */
 
 
-/* Mobile Optimierungen */
+/* RESPONSIVE ANPASSUNGEN FOR MOBILE SCREENSIZES */
 @media (max-width: 768px) {
-  .softskill-list li, .skill-info {
-    font-size: 0.95rem;
+  .skills-container {
+    padding: 0 10px;
   }
+
+  .skills-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* 1. Scrollstack auf Mobilgeräten entsperren */
+  .scrollstack {
+    max-height: none; /* Hebt die 65vh-Begrenzung auf */
+    overflow-y: visible; /* Verhindert das abgeschnittene Scroll-Fenster */
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Gleichmässiger Abstand zwischen den Karten statt 10vh */
+  }
+
+  /* 2. Sticky-Verhalten mobil aufheben, damit Karten nicht im Footer kleben */
+  .stack-card {
+    position: relative;
+    top: 0 !important;
+    margin-bottom: 0 !important; /* Entfernt den riesigen 10vh Abstand */
+    padding: 1.25rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .stack-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-grid-list {
+    grid-template-columns: 1fr; /* Einspaltiges Grid für Skills */
+    gap: 10px;
+  }
+
+  .skill-grid-list li,
+  .softskill-list li,
+  .skill-info {
+    font-size: 0.95rem;
+    padding: 10px 14px;
+  }
+
   .progress-bar {
     height: 10px;
   }
