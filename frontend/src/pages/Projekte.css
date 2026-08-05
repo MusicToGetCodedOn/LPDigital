@@ -530,19 +530,160 @@
 
 /* Mobile Optimierungen */
 @media (max-width: 768px) {
-  .projects-main-title {
-    font-size: 2.2rem;
+  .projects-page-container {
+    padding-inline: 16px;
+    padding-bottom: 40px;
   }
-  
+
+  .projects-main-title {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .projects-subtitle {
+    font-size: 0.98rem;
+    margin-bottom: 2rem;
+  }
+
+  .projects-filter-bar {
+    gap: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    padding: 9px 16px;
+    font-size: 0.85rem;
+  }
+
+  .tag-filter-container {
+    padding: 14px 14px;
+    margin-bottom: 1.8rem;
+  }
+
+  .tag-filter-pills {
+    gap: 6px;
+  }
+
+  .tag-filter-pill,
+  .clear-tag-btn {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
   .project-card {
-    height: 360px;
+    height: auto;
+    min-height: 320px;
+  }
+
+  .project-card-content {
+    padding: 1.2rem;
+    gap: 8px;
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+  }
+
+  .project-short-desc {
+    font-size: 0.84rem;
+  }
+
+  .category-badge {
+    font-size: 0.68rem;
+    padding: 4px 10px;
+  }
+
+  .tag-pill {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
+
+  .details-btn {
+    width: 100%;
+    padding: 11px 12px;
+  }
+
+  .project-detail-modal {
+    width: calc(100vw - 20px);
+    max-width: none;
+    max-height: 90vh;
+    border-radius: 18px;
   }
 
   .project-detail-body {
-    padding: 18px;
+    padding: 16px;
+    gap: 16px;
   }
-  
+
+  .detail-hero-image-wrapper {
+    max-height: 200px;
+  }
+
+  .detail-meta-row {
+    gap: 10px;
+  }
+
   .detail-links-row {
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-link-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-page-container {
+    padding-inline: 12px;
+  }
+
+  .projects-main-title {
+    font-size: 1.75rem;
+  }
+
+  .projects-subtitle {
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .projects-filter-bar {
+    gap: 6px;
+  }
+
+  .filter-btn {
+    flex: 1 1 calc(50% - 6px);
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+
+  .project-card {
+    min-height: 300px;
+  }
+
+  .project-card-content {
+    padding: 1rem;
+  }
+
+  .project-title {
+    font-size: 1.15rem;
+  }
+
+  .project-short-desc {
+    font-size: 0.8rem;
+  }
+
+  .tag-filter-container {
+    padding: 12px;
+  }
+
+  .tag-filter-label {
+    font-size: 0.75rem;
+    text-align: center;
   }
 }
