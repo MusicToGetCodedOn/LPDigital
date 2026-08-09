@@ -67,6 +67,16 @@ services:
     volumes:
       - //var/run/docker.sock:/var/run/docker.sock
 
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: always
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    networks:
+      - lpdigital-network
+
 # Netzwerke und Volumes definieren
 networks:
   lpdigital-network:
