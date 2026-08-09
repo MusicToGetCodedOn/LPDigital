@@ -35,17 +35,19 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Erlaubt Requests ohne Origin (z.B. Server-to-Server, Postman) 
-    // oder wenn die Origin in den allowedOrigins vorkommt
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      console.log("CORS blockiert für Origin:", origin);
-      callback(new Error("Nicht erlaubt durch CORS"));
+      callback(new Error('CORS Error: Origin nicht erlaubt.'));
     }
   },
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Preflight-Anfragen explizit für alle Routen erlauben
+app.options('*', cors());
 
 
 app.use(express.json());
