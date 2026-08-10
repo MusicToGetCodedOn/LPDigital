@@ -46,8 +46,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Preflight-Anfragen explizit für alle Routen erlauben
-app.options('{*path}', cors());
 
 
 app.use(express.json());
