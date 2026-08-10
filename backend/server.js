@@ -47,7 +47,7 @@ app.use(cors({
 }));
 
 // Preflight-Anfragen explizit für alle Routen erlauben
-app.options('*', cors());
+app.options('{*path}', cors());
 
 
 app.use(express.json());
