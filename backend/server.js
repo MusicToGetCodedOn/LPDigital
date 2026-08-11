@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
 // Config & Middleware
@@ -15,17 +16,22 @@ const contactRoutes = require('./routes/contactRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const helmet = require("helmet");
 
 // Datenbankverbindung initialisieren
 connectDB();
 
 const clientUrl = process.env.CLIENT_URL ? process.env.CLIENT_URL.replace(/\/$/, "") : null;
 
+// --- Rate Limiting ---
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 Minuten
+  max: 100, // Maximal 100 Anfragen pro IP
+  message: "Zu viele Anfragen von dieser IP, bitte später erneut versuchen."
+});
+
 // --- Global Middlewares ---
 const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:3000",
-  "http://localhost",
   "http://192.168.1.130",
   "http://192.168.1.130:80",
   'https://lpdigital.ch',
@@ -49,6 +55,13 @@ app.use(cors({
 
 
 app.use(express.json());
+
+// --- Security stuff ---
+
+app.use(helmet());
+app.use(express.json({ limit: "10kb" }));
+app.use(limiter);
+
 
 // --- Statische Dateien (Bilder, Flaggen etc.) ---
 app.use("/projects", express.static(path.join(__dirname, "public/projects")));

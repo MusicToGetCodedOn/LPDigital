@@ -5,13 +5,13 @@ import "./HeroSection.css";
 
 const codeText = `const developer = {
   name: "Loris Pérez",
-  role: "Apprentice Software Engineer",
+  role: "Apprentice IT Specialist",
   location: "Bern, CH",
-  focus: ["Fullstack Dev", "Platform Eng"],
+  focus: ["Fullstack Development", "Platform Engineering"],
   currentStack: {
-    frontend: ["React", "React Native", ".NET"],
-    backend: ["Node.js", "Express", "MongoDB"],
-    devOps: ["Docker", "Linux", "OpenTofu"]
+    frontend: ["React", "JavaScript", "Vite", "CSS3"],
+    backend: ["Node.js", "Express", "Prisma", "PostgreSQL"],
+    infrastructure: ["Docker", "Linux", "Cloudflare"]
   },
   status: "Open for Application Dev Internships"
 };`;
