@@ -60,6 +60,7 @@ app.use(express.json());
 
 app.use(helmet({
   crossOriginResourcePolicy: {policy: "cross-origin"},
+  crossOriginEmbedderPolicy: false, 
 }
 ));
 app.use(express.json({ limit: "10kb" }));
