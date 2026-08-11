@@ -203,3 +203,35 @@
   /* Violettes Leuchten passend zu deiner Accent-Farbe (#a855f7) */
   filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(168, 85, 247, 0.8));
 }
+
+.version-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #8b949e;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  width: fit-content;
+  margin-top: 0.25rem;
+}
+
+.version-tag span {
+  color: #6e7681;
+  font-weight: 500;
+}
+
+.version-tag a {
+  color: #58a6ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.version-tag a:hover {
+  color: #79c0ff;
+  text-decoration: underline;
+}
