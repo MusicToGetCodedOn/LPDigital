@@ -1,5 +1,4 @@
 import React from "react";
-// Importiere deine neu erstellte Komponente
 import Lightfall from "./components/Lightfall.jsx";
 import Navbar from "./components/Navbar.jsx";
 import "./App.css";

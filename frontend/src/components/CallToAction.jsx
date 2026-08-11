@@ -1,4 +1,3 @@
-// src/components/home/CallToAction.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import "./CallToAction.css";

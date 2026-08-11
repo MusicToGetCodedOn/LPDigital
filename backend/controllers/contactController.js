@@ -1,4 +1,3 @@
-// backend/controllers/contactController.js
 const { Resend } = require('resend');
 
 const sendContactMessage = async (req, res) => {

@@ -1,4 +1,3 @@
-// src/pages/Skills.jsx
 import React, { useEffect } from "react";
 import "./Skills.css";
 import CountUp from "../components/CountUp";

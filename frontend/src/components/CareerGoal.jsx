@@ -1,4 +1,3 @@
-// src/components/home/CareerGoal.jsx
 import React from "react";
 import "./CareerGoal.css";
 

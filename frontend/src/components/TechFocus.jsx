@@ -1,4 +1,3 @@
-// src/components/home/TechFocus.jsx
 import React from "react";
 import "./TechFocus.css";
 

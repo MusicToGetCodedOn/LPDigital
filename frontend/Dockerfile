@@ -10,7 +10,9 @@ COPY . .
 
 # Empfange die API-URL dynamisch als Build-Argument aus Docker Compose
 ARG VITE_API_BASE_URL
+ARG VITE_GIT_COMMIT_HASH
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+ENV VITE_GIT_COMMIT_HASH=$VITE_GIT_COMMIT_HASH
 
 RUN npm run build
 

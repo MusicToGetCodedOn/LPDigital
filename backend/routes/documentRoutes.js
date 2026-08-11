@@ -1,4 +1,3 @@
-// routes/documentRoutes.js
 const express = require('express');
 const router = express.Router();
 const { getAllDocuments, downloadDocument } = require('../controllers/documentController');

@@ -1,9 +1,11 @@
-// src/components/Footer.jsx
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom"; // Falls du react-router nutzt
 import github from "../icons/github.png"; // Beispiel für ein GitHub-Icon, falls du eins hast
 import "./Footer.css";
+const commitHash = import.meta.env.VITE_GIT_COMMIT_HASH;
+const shortHash = commitHash ? commitHash.substring(0, 7) : "dev";
+
 
 function Footer() {
   const [showImpressum, setShowImpressum] = useState(false);
@@ -25,6 +27,18 @@ function Footer() {
             <br />
             Alle Rechte vorbehalten.
           </p>
+          <br />
+          <div className="version-tag">
+          <span>Version: </span>
+          <a 
+            href={`https://github.com/musictogetcodedon/LPDigital/commit/${commitHash}`}
+            target="_blank" 
+            rel="noopener noreferrer"
+            title="View Commit on GitHub"
+          >
+            {shortHash}
+          </a>
+        </div>
         </div>
 
         {/* SPALTE 2: SCHNELL-NAVIGATION */}

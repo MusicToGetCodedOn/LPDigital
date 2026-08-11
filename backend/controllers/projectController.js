@@ -1,4 +1,3 @@
-// controllers/projectController.js
 const { prisma } = require('../config/db');
 
 const getProjects = async (req, res, next) => {

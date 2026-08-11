@@ -3,7 +3,7 @@ name: Build and Push Docker Images
 on:
   push:
     branches:
-      - main  # Oder 'master'
+      - main
 
 # WICHTIG: Berechtigungen für das GITHUB_TOKEN setzen
 permissions:
@@ -40,5 +40,6 @@ jobs:
           file: ./frontend/Dockerfile
           build-args: |
             VITE_API_BASE_URL=https://api.lpdigital.ch
+            VITE_GIT_COMMIT_HASH=${{ github.sha }}
           push: true
           tags: ghcr.io/musictogetcodedon/lpdigital-frontend:latest

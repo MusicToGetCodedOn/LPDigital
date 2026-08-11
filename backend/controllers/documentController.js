@@ -1,4 +1,3 @@
-// controllers/documentController.js
 const path = require('path');
 const fs = require('fs');
 const { prisma } = require('../config/db');

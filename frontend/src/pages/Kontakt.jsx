@@ -1,4 +1,3 @@
-// src/pages/Kontakt.jsx
 import React, { useState } from "react";
 import "./Kontakt.css";
 import profileImg from "../img/portrait.jpg"; // Falls vorhanden, sonst Fallback nutzen
