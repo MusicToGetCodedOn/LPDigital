@@ -39,6 +39,6 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           build-args: |
-            VITE_API_BASE_URL=http://192.168.1.130:5000
+            VITE_API_BASE_URL=https://api.lpdigital.ch
           push: true
           tags: ghcr.io/musictogetcodedon/lpdigital-frontend:latest
