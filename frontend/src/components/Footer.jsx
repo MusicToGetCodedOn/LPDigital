@@ -122,7 +122,7 @@ function Footer() {
                 <p>
                   Die Urheber- und alle anderen Rechte an Inhalten, Bildern,
                   Fotos oder anderen Dateien auf dieser Website gehören
-                  ausschließlich Loris Pérez oder den speziell genannten
+                  ausschliesslich Loris Pérez oder den speziell genannten
                   Rechtsinhabern.
                 </p>
               </div>

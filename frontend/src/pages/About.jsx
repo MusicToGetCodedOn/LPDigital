@@ -37,7 +37,7 @@ function About() {
               </div>
               <p>
                 Ich habe für 10 Jahre lang Saxophon Stunden genommen. Zeigt mein
-                Durchhaltevermögen und meine kreative Ader außerhalb der IT.
+                Durchhaltevermögen und meine kreative Ader ausserhalb der IT.
               </p>
             </div>
 

@@ -15,6 +15,7 @@ const languageRoutes = require("./routes/languageRoutes");
 const contactRoutes = require('./routes/contactRoutes');
 
 const app = express();
+app.set("trust proxy", 1);
 const PORT = process.env.PORT || 5000;
 const helmet = require("helmet");
 
