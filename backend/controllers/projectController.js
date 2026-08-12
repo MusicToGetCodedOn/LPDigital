@@ -9,16 +9,19 @@ const getProjects = async (req, res, next) => {
       title: p.title,
       category: p.category,
       tags: p.tags ? p.tags.split(',') : [],
-      shortDesc: p.shortDesc,
+      description: p.description,
       imageUrl: p.imageUrl,
+      documentUrl: p.documentUrl,
       links: {
         github: p.githubUrl,
         live: p.liveUrl
       },
       abstract: {
-        problem: p.problem,
-        solution: p.solution,
-        result: p.result
+        initialSituation: p.initialSituation,
+        technologies: p.technologies ? p.technologies.split(',') : [],
+        implementation: p.implementation,
+        results: p.results,
+        learnings: p.learnings
       }
     }));
 
@@ -38,14 +41,21 @@ const getProjectById = async (req, res, next) => {
     if (!project) {
       return res.status(404).json({ error: "Projekt nicht gefunden" });
     }
-    res.json(project);
+
+    // Formatierung für das Einzelprojekt (inkl. geparsten Arrays für Tags & Techs)
+    const formattedProject = {
+      ...project,
+      tags: project.tags ? project.tags.split(',') : [],
+      technologiesArray: project.technologies ? project.technologies.split(',') : []
+    };
+
+    res.json(formattedProject);
   } catch (error) {
     console.error("Fehler beim Laden des Projekts:", error);
     res.status(500).json({ error: "Fehler beim Laden des Projekts" });
   }
 };
 
-// Beide Funktionen gemeinsam exportieren
 module.exports = { 
   getProjects, 
   getProjectById 

@@ -72,6 +72,7 @@ app.use(limiter);
 // --- Statische Dateien (Bilder, Flaggen etc.) ---
 app.use("/projects", express.static(path.join(__dirname, "public/projects")));
 app.use("/flags", express.static(path.join(__dirname, "public/flags")));
+app.use('/abstracts', express.static(path.join(__dirname, '../public/abstracts')));
 
 // --- API Routes ---
 app.use("/api", apiRoutes); // Master-Router (enthält idealerweise projects & auth)
