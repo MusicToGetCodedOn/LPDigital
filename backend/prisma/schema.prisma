@@ -15,18 +15,26 @@ model User {
 }
 
 model Project {
-  id          String   @id
-  title       String
-  category    String   // 'privat' oder 'gibb'
-  tags        String   // Komma-getrennt (z.B. "React,Node.js,API")
-  shortDesc   String
-  problem     String   // Abstract: Ausgangslage
-  solution    String   // Abstract: Umsetzung
-  result      String   // Abstract: Ergebnis
-  imageUrl    String?  // Optionaler Pfad zum Bild (z.B. "/projects/stalkr.png")
-  githubUrl   String?  // Optionaler Link zum GitHub Repo
-  liveUrl     String?  // Optionaler Link zur Live-Demo
-  createdAt   DateTime @default(now())
+  id               String   @id @default(uuid())
+  title            String
+  category         String   // 'privat' oder 'gibb'
+  tags             String   // Komma-getrennt (z.B. "React,Node.js,API")
+  description      String   // Kurzbeschreibung des Projekts
+  
+  // Project Abstract (nachgib-Vorlage)
+  initialSituation String   // Ausgangslage / Aufgabenstellung
+  technologies     String   // Verwendete Technologien (z.B. "Node.js, Express, Docker")
+  implementation   String   // Umsetzung / Herausforderungen
+  results          String   // Ergebnisse und Erfolge
+  learnings        String   // Erkenntnisse / Lernerfahrung
+  
+  // Medien & Links
+  imageUrl         String?  // Pfad zum Titelbild (z.B. "/projects/stalkr.png")
+  documentUrl      String?  // Pfad zum Download-Dokument (z.B. "/documents/abstract-stalkr.pdf")
+  githubUrl        String?  // Link zum GitHub Repo
+  liveUrl          String?  // Link zur Live-Demo
+  
+  createdAt        DateTime @default(now())
 }
 model Language {
   id       String @id @default(uuid())
