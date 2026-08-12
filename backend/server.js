@@ -33,6 +33,7 @@ const limiter = rateLimit({
 
 // --- Global Middlewares ---
 const allowedOrigins = [
+  "http://localhost:5173",
   "http://192.168.1.130",
   "http://192.168.1.130:80",
   'https://lpdigital.ch',
