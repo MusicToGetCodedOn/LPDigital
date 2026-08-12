@@ -70,9 +70,23 @@ app.use(limiter);
 
 
 // --- Statische Dateien (Bilder, Flaggen etc.) ---
-app.use("/projects", express.static(path.join(__dirname, "public/projects")));
-app.use("/flags", express.static(path.join(__dirname, "public/flags")));
-app.use('/abstracts', express.static(path.join(__dirname, '../public/abstracts')));
+app.use("/projects", (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  next();
+}, express.static(path.join(__dirname, "public/projects")));
+
+app.use("/flags", (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  next();
+}, express.static(path.join(__dirname, "public/flags")));
+
+app.use("/abstracts", (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  next();
+}, express.static(path.join(__dirname, "public/abstracts")));
 
 // --- API Routes ---
 app.use("/api", apiRoutes); // Master-Router (enthält idealerweise projects & auth)
