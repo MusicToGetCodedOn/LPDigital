@@ -87,7 +87,7 @@ function ProjectDetail() {
           <div className="paper-column">
             {project.initialSituation && (
               <section className="paper-section">
-                <h2>Ausgangslage/Aufgabenstellung</h2>
+                <h2>Ausgangslage/ Aufgabenstellung</h2>
                 <p>{project.initialSituation}</p>
               </section>
             )}
@@ -101,7 +101,7 @@ function ProjectDetail() {
 
             {project.implementation && (
               <section className="paper-section">
-                <h2>Umsetzung/Herausforderungen</h2>
+                <h2>Umsetzung/ Herausforderungen</h2>
                 <p>{project.implementation}</p>
               </section>
             )}
@@ -118,7 +118,7 @@ function ProjectDetail() {
 
             {project.learnings && (
               <section className="paper-section">
-                <h2>Erkenntnisse/Lernerfahrung</h2>
+                <h2>Erkenntnisse/ Lernerfahrung</h2>
                 <p>{project.learnings}</p>
               </section>
             )}
