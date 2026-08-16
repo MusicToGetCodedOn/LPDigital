@@ -116,6 +116,7 @@
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .download-btn {
