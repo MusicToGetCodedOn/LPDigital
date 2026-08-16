@@ -4,22 +4,8 @@ const bcrypt = require("bcryptjs");
 const prisma = new PrismaClient();
 
 async function main() {
-  // 1. Admin User Seeding
-  const username = process.env.PORTFOLIO_USERNAME || "admin";
-  const rawPassword =
-    process.env.PORTFOLIO_PASSWORD || "bwd2026";
-  const hashedPassword = await bcrypt.hash(rawPassword, 10);
 
-  await prisma.user.upsert({
-    where: { username },
-    update: {},
-    create: {
-      username,
-      password: hashedPassword,
-    },
-  });
-
-  // 2. Projekte mit bereinigten Tags & Link/Bild-Feldern
+  // 1. Projekte mit bereinigten Tags & Link/Bild-Feldern
   const projects = [
   {
     id: "soundscope",
