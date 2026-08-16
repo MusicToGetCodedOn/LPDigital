@@ -27,18 +27,18 @@ async function main() {
     category: "Privat",
     tags: "React,Node.js,JavaScript,API,MongoDB,Fullstack",
     description:
-      "SoundScope ist eine Musik-Tracking-App zur Analyse von Spotify-Hörgewohnheiten und Metriken.",
+      "Das Projekt SoundScope ist eine Webanwendung, die aktuelle Musikwiedergaben über die Spotify-API ausliest und anzeigt. Die Software dient der Erfassung von Hörgewohnheiten und bietet eine Client-Server-Architektur zur Authentifizierung und Speicherung von Abspieldaten in einer Datenbank.",
     initialSituation:
-      "Bedarf an tieferen Einblicken in das eigene Hörverhalten und Echtzeit-Metriken über das Standard-Spotify-Profil hinaus.",
-    technologies: "React, Node.js, JavaScript, Express, Spotify Web API, MongoDB",
+      "Die Entwicklung adressiert den Bedarf, die aktuell abgespielten Titel eines Nutzers automatisiert zu erfassen und auf einem Dashboard darzustellen. Ziel war die Erstellung einer Anwendung, die Wiedergabedaten über Spotify-API-Endpunkte abruft und diese nicht nur anzeigt, sondern auch für eine spätere Historienauswertung persistent speichert.",
+    technologies: "Für die clientseitige Entwicklung wurde die JavaScript-Bibliothek React in Kombination mit dem Build-Tool Vite gewählt. Serverseitig basiert die Anwendung auf Node.js unter Verwendung des Webframeworks Express. Als Datenbanktechnologie kommt MongoDB zum Einsatz, wobei die Datenmodellierung über den Objekt-Dokumenten-Mapper Mongoose erfolgt. Für HTTP-Anfragen zwischen den Diensten und externen Schnittstellen wird die Bibliothek Axios verwendet.",
     implementation:
-      "Entwicklung einer Web-Anwendung mit React im Frontend und Node.js im Backend, die über OAuth 2.0 an die Spotify Web API angebunden ist.",
+      "Die Anwendung ist strukturell in Client- und Server-Verzeichnisse unterteilt. Das Backend beinhaltet Konfigurationsdateien für die Datenbankanbindung und definiert ein dediziertes Datenschema für den Wiedergabeverlauf über ein PlayHistory-Modell. Im Frontend wird die Navigation durch separate Routen-Komponenten für eine Haupt- und eine Profilansicht abgebildet. Eine zentrale technische Komponente war die Implementierung der Authentifizierungslogik, welche in einem eigenen React-Hook gekapselt wurde, um den Status zu verwalten.Entwicklung einer Web-Anwendung mit React im Frontend und Node.js im Backend, die über OAuth 2.0 an die Spotify Web API angebunden ist.",
     results:
-      "Umfassende Visualisierung von Hördaten, Top-Künstlern und präferierten Genres.",
+      "Der aktuelle Stand der Software umfasst ein konfiguriertes System aus Frontend und Backend. Die Benutzeroberfläche stellt Ansichten für die Hauptseite und das Profil bereit, ergänzt durch eine Kopfzeilen-Komponente. Die serverseitige Infrastruktur ist für die Entgegennahme von Anfragen, die Kommunikation mit der MongoDB-Datenbank und das Speichern der Wiedergabehistorie eingerichtet.",
     learnings:
-      "Vertiefung von OAuth 2.0 Authentication Flows und REST-API-Integrationen im Fullstack-Umfeld.",
+      "Aus der Architektur des Projekts lässt sich die Anwendung des MERN-Stacks ableiten, insbesondere die Trennung von React-Frontend und Node.js-Backend. Der Code demonstriert Vorgehensweisen bei der Modellierung von Datenbank-Schemata mit Mongoose sowie die Kapselung von Authentifizierungsprozessen in clientseitigen Hooks. ",
     imageUrl: "/projects/soundscope.png",
-    documentUrl: null,
+    documentUrl: "/abstracts/Project_Abstract_SoundScope.pdf",
     githubUrl: "https://github.com/MusicToGetCodedOn/Sound_Scope",
     liveUrl: null,
   },
@@ -48,18 +48,18 @@ async function main() {
     category: "Gibb",
     tags: ".NET MAUI,C#,Frontend",
     description:
-      "Elegante Buchhaltungs-Anwendung für Finanzen und Budgetierung aus dem Modul 322.",
+      "LPFinance ist eine übersichtliche Desktop-Anwendung, die für Kleinbetriebe und Einzelunternehmen konzipiert wurde, um Einnahmen, Ausgaben und Kundeninformationen zentral zu erfassen. Die Softwarerichtet sich an Nutzer mit geringen IT- und Buchhaltungskenntnissen und bietet eine reduzierte Benutzeroberfläche zur täglichen Finanzdokumentation und Auswertung.",
     initialSituation:
-      "Bedarf an einer nativen, schnellen Desktop-Anwendung zur persönlichen Finanzverwaltung ohne komplexe Cloud-Abhängigkeiten.",
-    technologies: ".NET MAUI, C#, XAML",
+      "Die Entwicklung von LPFinance resultiert aus den Anforderungen der Buchhaltungsservice Müller AG, welche ihren Kunden aus dem Segment der Kleinbetriebe eine digitale Alternative zu manuellen Tabellenkalkulationen zur Verfügung stellen wollte. Die Zielgruppe benötigt ein Werkzeug zur Dokumentation von Finanzbewegungen und zur Generierung von Monatsübersichten, ohne tiefgehendes Fachwissen vorauszusetzen. Das Ziel bestand darin, wiederkehrende Aufgaben zu vereinfachen, die Fehlerquote bei der manuellen Erfassung durch Kontrollmechanismen zu senken und eine lokale, offline-fähige Desktop-Lösung zu schaffen.",
+    technologies: "Das Projekt wurde auf Basis des Cross-Platform-Frameworks .NET MAUI realisiert, wobei C# als Programmiersprache für die Anwendungslogik und XAML für die Deklaration der Benutzeroberfläche dienen. Die Codebasis ist so konfiguriert, dass sie Build-Ziele für Windows, Android, iOS, Tizen und MacCatalyst unterstützt. Für das lokale Datenmanagement kommt eine in C# geschriebene Service-Klasse namens DataService zum Einsatz, welche die Speicherung und den Abruf der Daten abstrahiert. Die visuelle Gestaltung greift auf plattformübergreifende Ressourcen wie SVG-Icons und lokale Schriftarten zurück.",
     implementation:
-      "Entwicklung einer modernen Benutzeroberfläche mit .NET MAUI für plattformübergreifende Desktop-Performance.",
+      "Die Architektur der Anwendung folgt dem Strukturmuster von .NET MAUI, bei dem die Navigationshierarchie zentral über eine AppShell-Komponente gesteuert wird. Die Benutzeroberfläche ist in logische Bereiche unterteilt, die durch dedizierte Ansichten wie die OverviewPage, die AddBookingPage und die AccountsPage repräsentiert werden. Eine technische Vorgabe war die Implementierung einer lokalen Datenspeicherung, um die Offline-Funktionalität zu gewährleisten. Die Datenhaltung wurde im DataService gekapselt, um die UI-Komponenten von der Logik zu entkoppeln und Fehlerkontrollen bei der Eingabe abzufangen.",
     results:
-      "Ein lokales Finanz-Dashboard mit strukturierter Spesenkontrolle, Ausgaben-Tracking und einfacher Budgetübersicht.",
+      "Der Projektstand beinhaltet eine grafische Benutzeroberfläche mit Navigationsstrukturen zwischen den Modulen zur Erfassung von Konten und Buchungen. Anwender können über die Masken neue finanzielle Transaktionen eintragen und sich die Daten in einer Monatsübersicht darstellen lassen. Durch die lokale Speicherung wird der Anspruch an die Datensicherheit und die Offline-Verfügbarkeit auf dem Endgerät erfüllt. Eine definierte Exportfunktion ermöglicht zudem die Ausgabe der Monatsberichte als PDF-Dokument für die externe Weiterverarbeitung.",
     learnings:
-      "Verständnis von nativer Desktop-Entwicklung mit XAML und C# sowie plattformspezifischen UI-Komponenten.",
+      "Das Repository demonstriert die Strukturierung einer .NET MAUI-Anwendung durch die Trennung von XAML-basiertem Layout und dem dazugehörigen C#-Code-Behind der einzelnen Seiten. Aus der Dateistruktur lässt sich der Einsatz von ressourcenbasiertem Styling über dedizierte Dictionaries für Farben und globale Stile ablesen, was die Konsistenz der UI-Elemente sicherstellt. Das Projekt veranschaulicht zudem die Vorgehensweise bei der Umsetzung lokaler Datenverarbeitung und formularbasierter Datenerfassung im Kontext einer Desktop-Applikation.",
     imageUrl: "/projects/lpfinance.png",
-    documentUrl: null,
+    documentUrl: "/abstracts/Project_Abstract_LPFinance.pdf",
     githubUrl: "https://github.com/MusicToGetCodedOn/LPFinance",
     liveUrl: null,
   },
@@ -69,18 +69,18 @@ async function main() {
     category: "Gibb",
     tags: "React,Node.js,JavaScript,API,Fullstack",
     description:
-      "Game-Tracking-Plattform nach dem Vorbild von IGDB mit Bewertungen und Spielelisten (Abschlussarbeit Modul 293).",
+      "Gamebase ist eine Webanwendung, die aus einer React-basierten Frontend-Applikation und einem serverseitigen Node.js-Backend besteht und der Anzeige, Suche und Kategorisierung von Videospielen dient. Die Software richtet sich an Nutzer, die Spieledaten filtern, Detailinformationen abrufen und persönliche Präferenzen verwalten möchten, und bietet dafür eine modulare grafische Benutzeroberfläche.",
     initialSituation:
-      "Verwaltung von eigenen Spielelisten und Entdecken neuer Spiele in einer zentralen Hub.",
-    technologies: "React, JavaScript, Node.js, Twitch/IGDB API",
+      "Die Entwicklung des Projekts basiert auf der Anforderung, strukturierte Daten zu Videospielen über eine Client-Server-Architektur abrufbar und visuell erfassbar zu machen. Das Problem bestand darin, eine Lösung zu schaffen, die nicht nur statische Informationen anzeigt, sondern auch dynamische Interaktionen wie das Suchen, Filtern und das Verwalten von Benutzersitzungen ermöglicht. Ziel war die Implementierung einer Single-Page-Application, die eine komponentenbasierte Navigation zwischen verschiedenen Ansichten wie Top-Bewertungen, aktuellen Trends und individuellen Spieldetails sicherstellt.",
+    technologies: "Das Projekt nutzt im Frontend React als grundlegende Bibliothek für die Erstellung der Benutzeroberfläche, während Vite als Build-Tool für die lokale Entwicklungsumgebung und Kompilierung dient. Für das State-Management kommen React Contexts zum Einsatz, um Authentifizierungsstatus, visuelle Themen (Light/Dark-Mode) und Benachrichtigungen global zu steuern. Die Datenbeschaffung erfolgt über asynchrone JavaScript-Funktionen, die in dedizierten Utility-Modulen ausgelagert sind. Das Backend ist in JavaScript geschrieben und basiert auf einer serverseitigen Node.js-Laufzeitumgebung, deren primärer Einstiegspunkt durch eine zentrale Server-Datei definiert wird. Die Abhängigkeitsverwaltung beider Komponenten erfolgt über den Node Package Manager.",
     implementation:
-      "Frontend-Anwendung in React mit Integration der Twitch API / IGDB-Datenbank zur Anzeige von Spieledaten und Bewertungen.",
+      "Die Architektur der Anwendung basiert auf einer klaren strukturellen Trennung von Präsentations- und Logikschicht. Im Frontend sind die Benutzeroberflächen in wiederverwendbare UI-Komponenten wie Modals, Karten und Raster unterteilt, die über spezifische Routen für Entdecken, Kontoverwaltung und Detailansichten gerendert werden. Eine technische Herausforderung stellte die Kapselung der API-Aufrufe dar, welche durch die Auslagerung in dedizierte Utility-Skripte für gefilterte, populäre und top-bewertete Spiele gelöst wurde. Zudem erforderte die Implementierung von benutzerspezifischen Einstellungen und Sitzungen eine globale Zustandsverwaltung, die über Context-Provider für Authentifizierung und UI-Themen realisiert ist, um Logik von der reinen Darstellung zu entkoppeln.",
     results:
-      "Eine interaktive Plattform zum Bewerten von Videospielen und Verwalten persönlicher Backlogs.",
+      "Das System verfügt über eine voll funktionsfähige Navigationsstruktur mit implementierten Modulen zur Darstellung von Spielübersichten und Detaildaten. Kernfunktionen wie die thematische Anpassung der Benutzeroberfläche über einen Theme-Toggle, die Authentifizierung mittels Login- und Logout-Komponenten sowie die Anzeige von Systemmeldungen über Toasts sind in die Anwendung integriert. Die Darstellung der Spiele erfolgt über dedizierte Ansichten wie Karussells und strukturierte Raster, wobei die Daten über die entsprechenden Hilfsfunktionen dynamisch geladen werden können.",
     learnings:
-      "Umgang mit komplexen externen Game-Datenbank-APIs sowie responsivem Frontend-Design.",
+      "Die Dateistruktur des Repositories verdeutlicht etablierte Verfahren in der komponentenbasierten Softwareentwicklung mit React, insbesondere die strikte Kapselung von Routen, UI-Elementen und globalem Zustand. Der Code zeigt auf, wie durch den Einsatz von Context-Providern die direkte Weitergabe von Properties über mehrere Ebenen (Prop-Drilling) vermieden wird und wie sich externe Datenabrufe strukturiert vom eigentlichen Rendering-Prozess der Benutzeroberfläche trennen lassen. Darüber hinaus illustriert das Projekt die physische Aufteilung einer Webanwendung in unabhängige Verzeichnisse für Frontend- und Backend-Dienste.",
     imageUrl: "/projects/gamebase.png",
-    documentUrl: null,
+    documentUrl: "/abstracts/Project_Abstract_Gamebase.pdf",
     githubUrl: "https://github.com/MusicToGetCodedOn/Gamebase-frontend",
     liveUrl: "https://gamebase-frontend.vercel.app/",
   },
@@ -90,22 +90,22 @@ async function main() {
     category: "Privat",
     tags: "React,Node.js,JavaScript,MongoDB,Fullstack",
     description:
-      "Barber-Website mit Online-Terminbuchung und geschütztem Admin-Dashboard.",
+      "Das Projekt District37 ist eine Webanwendung zur Verwaltung von Terminen und Dienstleistungen, die primär für einen Friseursalon oder einen ähnlichen Dienstleistungsbetrieb konzipiert wurde. Die Software ermöglicht es Benutzern, sich zu registrieren, Dienstleistungen einzusehen und Buchungen vorzunehmen. Ein integrierter administrativer Bereich bietet Funktionen zur Verwaltung der Termine, zur Auswertung von Daten sowie zur Pflege des Dienstleistungsangebots. Die Architektur basiert auf einer vollständigen Trennung von Client und Server.",
     initialSituation:
-      "Ein Barbershop benötigte einen modernen Webauftritt mit Online-Terminvergabe und geschütztem Verwaltungsbereich.",
-    technologies: "React, Node.js, Express, MongoDB, REST API",
+      "Die Entwicklung adressiert den Bedarf an einer digitalen Terminverwaltung, um manuelle Buchungsprozesse abzulösen. Ziel war die Erstellung einer Plattform, auf der Kunden eigenständig Termine für spezifische Dienstleistungen anfragen können. Gleichzeitig erforderte die Aufgabenstellung eine Administrationsschnittstelle, die dem Betreiber eine Übersicht der anstehenden Termine bietet, eine grafische Auswertung der Buchungsdaten ermöglicht und den Export dieser Daten für weitere betriebliche Zwecke unterstützt.",
+    technologies: "Für die Entwicklung des Frontends kam die JavaScript-Bibliothek React in Kombination mit dem Build-Tool Vite zum Einsatz. Die clientseitige Navigation wird durch React Router abgebildet, während die HTTP-Kommunikation mit dem Backend über Axios erfolgt. Serverseitig basiert die Anwendung auf Node.js und dem Webframework Express. Als Datenbanktechnologie wird MongoDB verwendet, wobei die Datenmodellierung und Kommunikation über den Objekt-Dokumenten-Mapper Mongoose stattfindet. Zur Absicherung der Routen und der Benutzerauthentifizierung implementiert das System JSON Web Tokens, und Passwörter werden vor der Speicherung mit der Bibliothek bcryptjs kryptografisch gehasht.",
     implementation:
-      "Fullstack-Webanwendung mit React-Frontend, Node.js/Express-Backend und MongoDB als Datenbank.",
+      "Die Anwendung folgt einer klassischen Client-Server-Architektur. Das Backend ist strukturiert in Modelle, Controller und Middleware, wobei dedizierte Schema-Definitionen für Benutzer, Termine und Dienstleistungen existieren. Die Authentifizierungslogik wird serverseitig über eine eigene Middleware geschützt. Eine zentrale technische Anforderung bei der Implementierung war die sichere Verwaltung des Sitzungszustandes, was im Frontend über einen zentralen React-Kontext und eine geschützte Routen-Komponente gelöst wurde. Zudem erforderte die administrative Ansicht die Integration von Diagramm-Komponenten zur Datenvisualisierung sowie eine Funktion zum korrekten Formatieren und Exportieren der Datenbankinhalte als CSV-Datei.",
     results:
-      "Echtzeit-Terminbuchungssystem, Preisübersicht und ein funktionales Admin-Dashboard.",
+      "Der aktuelle Stand der Software umfasst ein voll funktionsfähiges System aus Frontend und Backend. Erfolgreich umgesetzt wurden die Benutzerregistrierung und das Login-Verfahren, eine Ansicht der angebotenen Dienstleistungen sowie ein interaktives Formular zur Terminbuchung. Der administrative Bereich ist mit einem Dashboard ausgestattet, das neben der tabellarischen Terminübersicht auch grafische Auswertungen und die geforderte Exportfunktion bereitstellt. Bildlaufleisten und formularbasierte Eingaben zur Pflege von Personen und Dienstleistungen ergänzen den Funktionsumfang.",
     learnings:
-      "Planung und Umsetzung einer vollständigen Business-Logik inkl. Autorisierung im Backend.",
+      "Aus der Projektarchitektur lässt sich die konsequente Anwendung des MERN-Stacks ableiten, die eine strikte Trennung von Geschäftslogik und Präsentationsschicht voraussetzt. Der Code verdeutlicht Vorgehensweisen bei der Erstellung von REST-APIs, dem Einsatz von Middleware zur Validierung von Zugriffsrechten und der Modellierung von Datenschemata in einer dokumentenorientierten Datenbank. Ferner demonstriert das Frontend den effektiven Einsatz der React Context API zur Vermeidung von Prop-Drilling bei der Weitergabe von Authentifizierungsdaten über die gesamte Komponentenstruktur hinweg.",
     imageUrl: "/projects/district37.png",
-    documentUrl: null,
+    documentUrl: "/abstracts/Project_Abstract_District37.pdf",
     githubUrl: "https://github.com/MusicToGetCodedOn/District37",
     liveUrl: null,
   },
-  {
+  /*{
     id: "vortex",
     title: "Vortex",
     category: "Privat",
@@ -124,25 +124,25 @@ async function main() {
     documentUrl: null,
     githubUrl: "https://github.com/MusicToGetCodedOn/Vortex",
     liveUrl: null,
-  },
+  },*/
   {
     id: "pcmatch",
     title: "PCMatch",
     category: "Gibb",
     tags: "React,JavaScript,Frontend",
     description:
-      "Interaktive Webanwendung auf Basis von React und Vite zur Auswahl, zum Vergleich und zur Konfiguration von PC-Hardwarekomponenten.",
+      "PCMatch ist eine React-basierte Webanwendung, die der Konfiguration und Zusammenstellung von PC-Hardwarekomponenten dient. Die Software richtet sich an Nutzer, die kompatible Bauteile wie Prozessoren, Mainboards und Grafikkarten aus einem strukturierten Datensatz filtern und zu einem vollständigen System zusammenfügen möchten.",
     initialSituation:
-      "Die Zusammenstellung eines eigenen PCs oder das Upgrade bestehender Hardware ist oft komplex, unübersichtlich und fehleranfällig.",
-    technologies: "React, TypeScript, Vite, Framer Motion, Tailwind CSS",
+      "Die Entwicklung des Projekts basiert auf der Anforderung, strukturierte Hardwaredaten für den PC-Bau über eine grafische Benutzeroberfläche visuell erfassbar und konfigurierbar zu machen. Das Problem bestand darin, eine Lösung zu schaffen, die statische JSON-Datensätze zu verschiedenen Computerkonstruktionsteilen einliest und dynamische Interaktionen wie das Suchen und Auswählen ermöglicht. Ziel war die Implementierung einer Single-Page-Application, die eine modulare Navigation zwischen einer dedizierten Builder-Ansicht und einer Produktübersicht",
+    technologies: "Das Projekt nutzt im Frontend React als grundlegende Bibliothek für die Erstellung der Benutzeroberfläche, während Vite als Build-Tool für die lokale Entwicklungsumgebung und die Kompilierung dient. Die Datenhaltung der Hardwarekomponenten erfolgt lokal in strukturierten JSON-Dateien. Das Styling der Anwendung wird modular über CSS-Modules abgewickelt, was eine komponentenbezogene Kapselung der Stile gewährleistet. Die Abhängigkeitsverwaltung erfolgt über den Node Package Manager, während ESLint für die statische Code-Analyse und Einhaltung von Code-Standards in die Konfiguration integriert ist. Für die Navigation innerhalb der Single-Page-Application kommt ein Routing-Konzept zum Einsatz, das zwischen den verschiedenen Hauptansichten wechselt.",
     implementation:
-      "PCMatch bietet eine intuitive Benutzeroberfläche zur Exploration von Hardware-Spezifikationen kombiniert mit einem Konfigurationsassistenten unter Nutzung moderner Webtechnologien.",
+      "Die Architektur der Anwendung basiert auf einer komponentenbasierten Struktur, die Präsentationslogik strikt in wiederverwendbare UI-Elemente wie spezifische Hardware-Karten, Suchleisten und Bestätigungs-Modals unterteilt. Die Applikationszustände und die Formularlogik werden in Modulen wie dem BuildForm und der Buildsummary zentral verwaltet. Eine technische Hürde stellte die konsistente Kapselung der Stylesheets dar, welche durch den konsequenten Einsatz von CSS-Modules gelöst wurde, um globale Namenskonflikte zu vermeiden. Die statischen Hardwaredaten werden über dedizierte JSON-Dateien aus einem Datenverzeichnis importiert und in den jeweiligen Routen für die Builder- und Produktansichten dynamisch gerendert.",
     results:
-      "Eine funktionale, reaktive Single-Page-Application mit flüssigen Animationen und optimiertem Build-Prozess durch Vite.",
+      "Das finale System verfügt über eine funktionstüchtige Navigationsstruktur mit implementierten Routen für die Produktsuche, den PC-Konfigurator und eine abgeschlossene Zusammenfassung. Kernfunktionen wie die Darstellung spezifischer Bauteile von Mainboards bis hin zu Netzteil- und Speicherkomponenten wurden erfolgreich in eigenen Kartenkomponenten realisiert. Die Anwendung lädt und visualisiert die statischen JSON-Datensätze fehlerfrei innerhalb der entsprechenden Konfigurationsformulare.",
     learnings:
-      "Komplexe Zustandsverwaltung im Frontend sowie Erstellung flüssiger Benutzeroberflächen mit Framer Motion.",
+      "Die Verzeichnisstruktur des Repositories verdeutlicht etablierte Verfahren in der komponentenbasierten Frontend-Entwicklung mit React, insbesondere die strikte Kapselung von Routen, UI-Elementen und statischen Datenquellen. Der Code zeigt auf, wie durch den Einsatz von CSS-Modules das Styling wartbar gehalten wird und wie sich spezifische Hardware-Komponenten durch wiederverwendbare Karten-Layouts standardisieren lassen. Darüber hinaus illustriert das Projekt die physische Aufteilung einer Webanwendung in unabhängige Verzeichnisse für Assets, Daten, Routen und Kernkomponenten innerhalb einer modernen Vite-Build-Umgebung.",
     imageUrl: "/projects/pcmatch.png",
-    documentUrl: null,
+    documentUrl: "/abstracts/Project_Abstract_PCMatch.pdf",
     githubUrl: "https://github.com/MusicToGetCodedOn/PCMatch",
     liveUrl: null,
   },
@@ -152,18 +152,18 @@ async function main() {
     category: "Gibb",
     tags: "React,Docker,Node.js,Fullstack,Typescript",
     description:
-      "Minecraft Server-Dashboard mit Live-Weltkarte, Konsole und Spielerverwaltung.",
+      "Stalkr ist eine Webanwendung zur Verwaltung und Überwachung von Minecraft-Servern. Die Software richtet sich an Server-Administratoren und bietet eine grafische Benutzeroberfläche zur Steuerung des Server-Status, zur Verwaltung von Spieler-Whitelists sowie zur Bearbeitung von Server-Konfigurationen und NBT-Daten.",
     initialSituation:
-      "Vereinfachte Steuerung und Überwachung eines lokal gehosteten Minecraft-Servers über eine Weboberfläche.",
-    technologies: "React, TypeScript, Node.js, Docker API, RCON Protocol",
+      "Die Entwicklung des Projekts basiert auf der Anforderung, die Administration von dedizierten Minecraft-Servern über eine zentrale, webbasierte Benutzeroberfläche zugänglich zu machen. Das Problem bestand darin, isolierte Systemprozesse wie das Docker-Container-Management, das Auslesen von Server-Statistiken sowie die Verwaltung von Konfigurationsdateien und Whitelists in einer einheitlichen Applikation zu konsolidieren. Ziel war die Implementierung einer Client-Server-Architektur, welche eine geschützte Admin-Ansicht mit direktem Zugriff auf die Live-Konsole, Server-Eigenschaften und Spielerdaten bereitstellt.",
+    technologies: "Das Projekt ist als Full-Stack-Applikation konzipiert und verwendet netzwerkübergreifend TypeScript für die Typsicherheit. Im Frontend kommt React als primäre UI-Bibliothek zum Einsatz, während Vite den Build-Prozess und die lokale Entwicklungsumgebung steuert. Die serverseitige Logik ist in Node.js implementiert und strukturiert sich in dedizierte Routen und Services. Für die Interaktion mit dem Host-System wird programmatisch ein Docker-Service genutzt, um die zugrundeliegenden Server-Container zu verwalten. Spezifische binäre Datenformate des Spiels werden über einen dedizierten NBT-Service verarbeitet, während die asynchrone Kommunikation zwischen Client und Server über eine zentrale API-Schnittstelle abgewickelt wird.",
     implementation:
-      "Anbindung der Docker-Container-Schnittstelle an ein React-Dashboard mit Live-RCON-Konsole und Map-Integration.",
+      "Die Architektur folgt einer strikten Trennung zwischen einer Frontend-Applikation und einem serverseitigen Backend. Im Frontend ist die Präsentationslogik in wiederverwendbare UI-Elemente wie Spielerkarten, Server-Statistiken und Admin-spezifische Komponenten für Konfigurations-Editoren aufgeteilt. Die Navigationsstruktur unterscheidet primär zwischen öffentlichen Home-Ansichten, einer Login-Maske und einem geschützten Administrationsbereich. Backend-seitig wird eine Service-orientierte Architektur angewandt, welche die Geschäftslogik in spezialisierte Module für Authentifizierung, Docker-Interaktion, Minecraft-spezifische Aufgaben und UUID-Auflösung unterteilt. Die technische Integration der Live-Konsole und die dynamische Manipulation der Whitelist sowie der Server-Eigenschaften erforderten dedizierte Schnittstellen, die durch spezialisierte Routing-Module für Spieler, Server und Authentifizierung abgebildet werden.",
     results:
-      "Zentrale Verwaltungsoberfläche für Docker-Minecraft-Instanzen mit Echtzeit-Statusüberwachung.",
+      "Das finale System stellt eine funktionstüchtige Verwaltungsplattform dar, die Client- und Server-Komponenten erfolgreich integriert. Kernfunktionen wie die Steuerung des Server-Status, das Auslesen einer textbasierten Live-Konsole sowie die direkte grafische Manipulation der Whitelist und der Server-Eigenschaften wurden in spezifischen Admin-Komponenten realisiert. Das Frontend kommuniziert über definierte API-Endpunkte mit den Backend-Services, um Spielerdaten abzurufen und die Docker-basierten Serverprozesse zu steuern.",
     learnings:
-      "Arbeit mit Socket-/RCON-Verbindungen, Docker Engine APIs und Container-Management.",
+      "Die Verzeichnisstruktur des Repositories demonstriert etablierte Praktiken in der Full-Stack-Entwicklung mit TypeScript, insbesondere die klare Kapselung von Authentifizierungsmechanismen und spielspezifischen Diensten in getrennten Schichten. Der Code zeigt auf, wie Systemzugriffe auf externe Abhängigkeiten wie Docker und proprietäre Dateiformate wie NBT durch dedizierte Service-Klassen abstrahiert werden können, um die Skalierbarkeit und Wartbarkeit der API zu gewährleisten. Darüber hinaus illustriert die Architektur des Frontends eine strikte Trennung von seitenübergreifenden Elementen, ansichtsspezifischen Hauptseiten und modularen Administrationswerkzeugen innerhalb einer modernen React- und Vite-Build-Umgebung.",
     imageUrl: "/projects/stalkr.png",
-    documentUrl: null,
+    documentUrl: "/abstracts/Project_Abstract_Stalkr.pdf",
     githubUrl: "https://github.com/kiraa1q/stalkr",
     liveUrl: null,
   },
