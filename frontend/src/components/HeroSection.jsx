@@ -4,7 +4,7 @@ import "./HeroSection.css";
 
 const codeText = `const developer = {
   name: "Loris Pérez",
-  role: "Apprentice IT Specialist",
+  role: "Application Developer",
   location: "Bern, CH",
   focus: ["Fullstack Development", "Platform Engineering"],
   currentStack: {
