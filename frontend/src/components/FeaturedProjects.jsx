@@ -115,7 +115,7 @@ function FeaturedProjects() {
                       </a>
                     )}
                     <Link
-                      to={`/projects`}
+                      to={`/projects/${project.id}`}
                       className="project-btn project-btn-details"
                     >
                       Details ansehen

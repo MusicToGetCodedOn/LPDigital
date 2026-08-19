@@ -31,7 +31,7 @@ function Login() {
       if (response.ok && data.success) {
         // JWT-Token lokal speichern
         localStorage.setItem('portfolio_token', data.token);
-        navigate('/'); // Weiterleitung zu den Dokumenten
+        navigate('/documents'); // Weiterleitung zu den Dokumenten
       } else {
         setError(data.message || 'Ungültige Anmeldedaten.');
       }

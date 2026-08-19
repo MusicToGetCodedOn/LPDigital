@@ -1,27 +1,26 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // useLocation & useNavigate hinzugefügt
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../img/logo.png";
 import logoNameOnly from "../img/Logo_nur_Name.png";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const location = useLocation(); // Zwingt die Navbar bei jedem Seitenwechsel zum Neu-Rendern
-  const navigate = useNavigate(); // Ermöglicht die Weiterleitung nach dem Logout
+  const location = useLocation(); 
+  const navigate = useNavigate(); 
 
-  // Prüfen, ob das Token im LocalStorage existiert (gibt true oder false zurück)
   const isLoggedIn = !!localStorage.getItem("portfolio_token");
 
   const handleLogout = () => {
-    localStorage.removeItem("portfolio_token"); // Token löschen
-    setOpen(false); // Mobiles Menü schliessen
-    navigate("/"); // User zurück zur Homepage leiten
+    localStorage.removeItem("portfolio_token");
+    setOpen(false);
+    navigate("/"); 
   };
 
   const getDynamicTag = () => {
     switch (location.pathname) {
       case "/":
-        return ""; // Auf der Startseite zeigen wir nur das Logo ohne Tag
+        return ""; 
       case "/about":
         return "about";
       case "/projects":
@@ -32,8 +31,7 @@ function Navbar() {
         return "contact";
       case "/documents":
         return "documents";
-      case "/login":
-        return "login";
+      // Den Fall "/login" können wir komplett löschen
       default:
         return "";
     }
@@ -45,7 +43,6 @@ function Navbar() {
     <nav className="glass-navbar">
       <div className="nav-logo">
         <Link to="/" onClick={() => setOpen(false)} className="logo-link">
-          {/* Das Tag wird nun IMMER gerendert */}
           <span className="dynamic-code-tag">{`</${currentTag}>`}</span>
           <span className="dynamic-code-tag">{`LPDigital`}</span>{" "}
         </Link>
@@ -61,48 +58,30 @@ function Navbar() {
 
       <ul className={`nav-links ${open ? "open" : ""}`}>
         <li>
-          <Link to="/" onClick={() => setOpen(false)}>
-            Home
-          </Link>
+          <Link to="/" onClick={() => setOpen(false)}>Home</Link>
         </li>
         <li>
-          <Link to="/about" onClick={() => setOpen(false)}>
-            Über mich
-          </Link>
+          <Link to="/about" onClick={() => setOpen(false)}>Über mich</Link>
         </li>
         <li>
-          <Link to="/projects" onClick={() => setOpen(false)}>
-            Projekte
-          </Link>
+          <Link to="/projects" onClick={() => setOpen(false)}>Projekte</Link>
         </li>
         <li>
-          <Link to="/skills" onClick={() => setOpen(false)}>
-            Skills
-          </Link>
+          <Link to="/skills" onClick={() => setOpen(false)}>Skills</Link>
         </li>
         <li>
-          <Link to="/contact" onClick={() => setOpen(false)}>
-            Kontakt
-          </Link>
+          <Link to="/contact" onClick={() => setOpen(false)}>Kontakt</Link>
         </li>
         <li>
-          <Link to="/documents" onClick={() => setOpen(false)}>
-            Dokumente
-          </Link>
+          <Link to="/documents" onClick={() => setOpen(false)}>Dokumente</Link>
         </li>
 
-        {/* Dynamischer Login/Logout Button */}
-        {isLoggedIn ? (
+        {/* Wenn eingeloggt -> Logout anzeigen. Wenn nicht -> GAR NICHTS anzeigen */}
+        {isLoggedIn && (
           <li>
             <button className="nav-logout-btn" onClick={handleLogout}>
               Logout
             </button>
-          </li>
-        ) : (
-          <li>
-            <Link to="/login" onClick={() => setOpen(false)}>
-              Login
-            </Link>
           </li>
         )}
       </ul>
