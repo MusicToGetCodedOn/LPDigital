@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  /* Etwas dynamischeres Padding für Desktop */
   padding: 4rem 2rem 6rem 2rem;
 }
 
@@ -30,12 +31,6 @@
   align-items: start;
 }
 
-@media (max-width: 900px) {
-  .kontakt-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Left Card: Info */
 .kontakt-info-card {
   padding: 2.5rem;
@@ -52,9 +47,9 @@
 }
 
 .profile-circle {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 100px;
+  height: auto;
+  border-radius: 10%;
   background: rgba(168, 85, 247, 0.15);
   border: 2px solid #a855f7;
   display: flex;
@@ -62,6 +57,13 @@
   align-items: center;
   overflow: hidden;
   flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.profile-circle:hover {
+  border-radius: 10%;
+  width: 100px;
+  height: auto;
 }
 
 .profile-circle img {
@@ -129,6 +131,7 @@
   color: #fff;
   text-decoration: none;
   transition: color 0.2s ease;
+  word-break: break-word; /* Verhindert, dass lange E-Mail-Adressen das Layout sprengen */
 }
 
 a.detail-value:hover {
@@ -142,6 +145,7 @@ a.detail-value:hover {
 
 .social-links {
   display: flex;
+  flex-wrap: wrap; /* WICHTIG für Mobile: Links umbrechen lassen, wenn der Platz fehlt */
   gap: 0.75rem;
   margin-top: 0.25rem;
 }
@@ -189,12 +193,6 @@ a.detail-value:hover {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
-}
-
-@media (max-width: 600px) {
-  .form-group-row {
-    grid-template-columns: 1fr;
-  }
 }
 
 .form-group {
@@ -275,4 +273,76 @@ a.detail-value:hover {
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
+}
+
+/* =========================================
+   MEDIA QUERIES FÜR RESPONSIVES DESIGN
+========================================= */
+
+/* Tablet (bis 900px) */
+@media (max-width: 900px) {
+  .kontakt-page {
+    padding: 3rem 1.5rem 4rem 1.5rem; /* Weniger Abstand aussen */
+  }
+
+  .kontakt-grid {
+    grid-template-columns: 1fr; /* Formular rutscht unter die Info-Card */
+    gap: 1.5rem;
+  }
+}
+
+/* Grosses Smartphone (bis 768px) */
+@media (max-width: 768px) {
+  .kontakt-info-card,
+  .kontakt-form-card {
+    padding: 1.75rem; /* Weniger Padding innerhalb der Cards */
+  }
+}
+
+/* Smartphone (bis 600px) */
+@media (max-width: 600px) {
+  .kontakt-page {
+    /* Erhöhtes Top-Padding (z. B. 6rem oder 7rem), damit die Navbar das Profilbild nicht verdeckt */
+    padding: 7rem 1rem 3rem 1rem; 
+  }
+
+  .kontakt-info-card,
+  .kontakt-form-card {
+    padding: 1.5rem; 
+  }
+
+  /* 1. Profil-Header zentrieren (Bild über dem Text) */
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.8rem; 
+  }
+
+  .profile-circle {
+    width: 90px; 
+  }
+
+  /* 2. Kontakt-Details zentrieren */
+  .detail-item {
+    align-items: center;
+    text-align: center;
+  }
+
+  /* 3. Social-Links in die Mitte setzen */
+  .social-links {
+    justify-content: center;
+  }
+
+  /* Formular: Nebeneinanderliegende Felder untereinander anzeigen */
+  .form-group-row {
+    grid-template-columns: 1fr; 
+  }
+
+  /* Senden-Button zentrieren und über die volle Breite ziehen */
+  .btn-submit {
+    align-self: center; 
+    width: 100%;
+    text-align: center;
+  }
 }
